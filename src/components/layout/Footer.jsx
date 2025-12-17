@@ -1,6 +1,7 @@
 import { useRef, useEffect } from 'react'
+import { IoChevronBack } from 'react-icons/io5'
 
-export default function SearchableFooter({ onFocus, query, onQueryChange, isSearchActive }) {
+export default function SearchableFooter({ onFocus, query, onQueryChange, isSearchActive, onClose }) {
     const footerRef = useRef(null)
     const inputRef = useRef(null)
 
@@ -39,7 +40,7 @@ export default function SearchableFooter({ onFocus, query, onQueryChange, isSear
 
     // Different styles for top vs bottom positioning
     const footerClasses = isSearchActive
-        ? "sticky top-0 left-0 right-0 shrink-0 border-b border-gray-800 bg-gradient-to-r from-gray-50 via-gray-100 to-gray-50 h-16 flex items-center shadow-md"
+        ? "sticky fixed left-50% top-50% shrink-0 border-b border-gray-800 bg-gradient-to-r from-gray-50 via-gray-100 to-gray-50 h-16 flex items-center shadow-md"
         : "sticky bottom-0 left-0 right-0 shrink-0 border-t border-gray-800 bg-gradient-to-r from-gray-50 via-gray-100 to-gray-50 h-16 flex items-center shadow-md"
 
     return (
@@ -47,8 +48,17 @@ export default function SearchableFooter({ onFocus, query, onQueryChange, isSear
             ref={footerRef}
             className={footerClasses}
         >
-            <div className="max-w-3xl mx-auto w-full px-2">
-                <div className="flex items-center gap-3 bg-white border-2 border-gray-900 rounded-lg px-5 py-2.5 shadow-lg hover:shadow-xl transition-shadow duration-300">
+            <div className="flex w-full px-2">
+                {/* if search active need to show a back button and it inactive the serch and if search inactive need to show a search button and it active the search */}
+                {isSearchActive && (
+                    <button 
+                        onClick={onClose}
+                        className="flex items-center gap-3 pr-2 pl-0 py-2.5"
+                    >
+                        <IoChevronBack className="w-5 h-5 text-black" />
+                    </button>
+                )}
+                <div className="flex items-center gap-3 bg-white border-2 border-gray-900 rounded-lg px-5 py-2.5 shadow-lg hover:shadow-xl transition-shadow duration-300 w-full">
                     <svg
                         className="w-5 h-5 text-gray-600"
                         fill="none"

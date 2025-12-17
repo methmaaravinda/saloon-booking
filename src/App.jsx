@@ -29,6 +29,7 @@ function App() {
       query={searchQuery}
       onQueryChange={setSearchQuery}
       isSearchActive={searchActive}
+      onClose={handleSearchClose}
     />
   )
 

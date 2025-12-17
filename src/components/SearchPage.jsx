@@ -1,4 +1,5 @@
 import { FiX, FiScissors, FiHeart, FiStar, FiClock } from 'react-icons/fi'
+import HyrachiServices from './HyrachiServices'
 
 // Categories hierarchy - we can expand this later
 const categories = [
@@ -29,8 +30,8 @@ export default function SearchPage({ query, onClose }) {
     return (
         <div className="h-full flex flex-col bg-gray-50">
             {/* Header with close button */}
-            <div className="flex items-center justify-between p-4 border-b border-gray-200 bg-white">
-                <h2 className="text-lg font-semibold text-gray-900">
+            {/* <div className="flex items-center justify-between p-2 border-b border-gray-200 bg-white">
+                <h2 className="text-sm font-semibold text-gray-900">
                     {hasQuery ? "Search Results" : "Browse Services"}
                 </h2>
                 <button
@@ -39,7 +40,7 @@ export default function SearchPage({ query, onClose }) {
                 >
                     <FiX size={20} className="text-gray-600" />
                 </button>
-            </div>
+            </div> */}
 
             {/* Content area */}
             <div className="flex-1 overflow-y-auto p-4">
@@ -63,35 +64,7 @@ export default function SearchPage({ query, onClose }) {
                     </div>
                 ) : (
                     // Show categories hierarchy
-                    <div className="space-y-3">
-                        <p className="text-xs text-gray-500 font-medium uppercase tracking-wide">Categories</p>
-                        <div className="grid grid-cols-2 gap-3">
-                            {categories.map((cat, idx) => (
-                                <button
-                                    key={idx}
-                                    className="flex items-center gap-3 p-4 bg-white rounded-xl border border-gray-200 hover:border-gray-400 hover:shadow-md transition-all"
-                                >
-                                    <span className="text-2xl">{cat.emoji}</span>
-                                    <p className="text-sm font-medium text-gray-900">{cat.name}</p>
-                                </button>
-                            ))}
-                        </div>
-                        
-                        {/* Recent/Popular section - placeholder for later */}
-                        <div className="mt-6">
-                            <p className="text-xs text-gray-500 font-medium uppercase tracking-wide mb-3">Popular</p>
-                            <div className="flex flex-wrap gap-2">
-                                {["Haircut", "Facial", "Manicure", "Massage"].map((item, idx) => (
-                                    <button
-                                        key={idx}
-                                        className="px-3 py-2 bg-white border border-gray-200 rounded-full text-xs font-medium text-gray-700 hover:bg-gray-100 transition-colors"
-                                    >
-                                        {item}
-                                    </button>
-                                ))}
-                            </div>
-                        </div>
-                    </div>
+                    <HyrachiServices />
                 )}
             </div>
         </div>
