@@ -5,7 +5,7 @@ import MainCard from '../components/layout/MainCard'
 import { FiUser, FiMail, FiMapPin, FiClock } from 'react-icons/fi'
 import ContactDetails from '../components/ContactDetails'
 import WorkingHours from '../components/WorkingHours'
-
+import AnimatedBorderDemo from '../components/Animations'
 const Home = () => {
   return (
     // Fill the available height provided by App's main area
@@ -16,6 +16,7 @@ const Home = () => {
       <OtherAvailableSlots />
       <ContactDetails />
       <WorkingHours />
+      {/* <AnimatedBorderDemo /> */}
     </div>
   )
 }

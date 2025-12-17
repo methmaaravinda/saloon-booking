@@ -53,7 +53,7 @@ function BookingCards() {
     
     return (
             <div className="container mx-auto px-4 py-2">
-            <div className="relative bg-white shadow-sm border rounded-xl p-4 border-gray-500 shadow-md">
+            <div className="relative bg-white shadow-sm rounded-xl p-4 border-gray-500 shadow-md animated-border animated-border-thick animated-border-blue">
 
                 {/* Slot navigation icon - changes direction at positions 1 and 10 */}
                 <button
@@ -75,11 +75,9 @@ function BookingCards() {
                     {currentSlot.day} · {currentSlot.time}
                 </p>
 
-                <button className="mt-3 w-full bg-black text-white py-3 px-6 rounded-lg text-sm font-semibold active:scale-[0.98] transition-all duration-150 shadow-[0_0_20px_rgba(255,255,255,0.4)] animate-[pulse_4s_ease-in-out_infinite] active:animate-none border border-white/20">
+                <button className="mt-3 w-full bg-black text-white py-3 px-6 rounded-lg text-sm font-semibold  border border-white/20">
                     Book now
                 </button>
-
-
             </div>
         </div>
     );

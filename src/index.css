@@ -11,3 +11,94 @@ html, body, #root {
 ::-webkit-scrollbar {
   display: none;
 }
+
+.animated-border {
+          isolation: isolate;
+          position: relative;
+        }
+
+        .animated-border::before {
+          content: "";
+          position: absolute;
+          inset: -2px;
+          z-index: -1;
+          border-radius: inherit;
+          background: conic-gradient(
+            from var(--angle), 
+            #381D6A 0%, 
+            #E0D1FF 50%, 
+            #381D6A 100%
+          );
+          animation: rotate 3s linear infinite;
+          -webkit-mask: 
+            linear-gradient(#fff 0 0) content-box, 
+            linear-gradient(#fff 0 0);
+          -webkit-mask-composite: xor;
+          mask-composite: exclude;
+          padding: 2px;
+        }
+
+        /* Thicker border variants */
+        .animated-border-thick::before {
+          inset: -3px;
+          padding: 3px;
+        }
+
+        .animated-border-extra-thick::before {
+          inset: -4px;
+          padding: 4px;
+        }
+
+        .animated-border:hover::before {
+          animation-play-state: paused;
+        }
+
+        @property --angle {
+          syntax: "<angle>";
+          inherits: true;
+          initial-value: 0deg;
+        }
+
+        @keyframes rotate {
+          to {
+            --angle: 360deg;
+          }
+        }
+
+        /* Slower animation variant */
+        .animated-border-slow::before {
+          animation-duration: 6s;
+        }
+
+        /* Faster animation variant */
+        .animated-border-fast::before {
+          animation-duration: 1.5s;
+        }
+
+        /* Different color variants */
+        .animated-border-blue::before {
+          background: conic-gradient(
+            from var(--angle), 
+            #1e3a8a 0%, 
+            #60a5fa 50%, 
+            #1e3a8a 100%
+          );
+        }
+
+        .animated-border-green::before {
+          background: conic-gradient(
+            from var(--angle), 
+            #065f46 0%, 
+            #34d399 50%, 
+            #065f46 100%
+          );
+        }
+
+        .animated-border-pink::before {
+          background: conic-gradient(
+            from var(--angle), 
+            #831843 0%, 
+            #f9a8d4 50%, 
+            #831843 100%
+          );
+        }
