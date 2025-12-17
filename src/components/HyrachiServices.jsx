@@ -464,6 +464,76 @@ export default function HyrachiServices() {
                     </div>
                 </AutoScroll>
             </div>
+            {/* Discounts Section */}
+            <div>
+                <h1 className="inline-block text-sm font-semibold text-gray-900 px-2 pt-1 pb-2">
+                    🎉 Discounts & Offers
+                </h1>
+                <AutoScroll speed={12} pauseOnHover={true}>
+                    <div className="flex flex-nowrap gap-3 overflow-x-auto whitespace-nowrap pl-3 pb-3">
+                        {/* Discount 1 - New Customer */}
+                        <div className="flex flex-col bg-gradient-to-br from-rose-100 to-rose-200 border border-rose-300 p-3 rounded-xl min-w-[180px]">
+                            <div className="flex items-center justify-between">
+                                <span className="text-xs font-bold text-rose-600 bg-rose-50 px-2 py-0.5 rounded-full">NEW</span>
+                                <span className="text-lg font-black text-rose-600">20% OFF</span>
+                            </div>
+                            <span className="text-sm font-bold text-gray-900 mt-2">First Visit Discount</span>
+                            <span className="text-xs text-gray-600 mt-1">On any service</span>
+                            <span className="text-xs text-rose-500 mt-2 font-medium">Code: WELCOME20</span>
+                        </div>
+                        {/* Discount 2 - Haircut */}
+                        <div className="flex flex-col bg-gradient-to-br from-amber-100 to-amber-200 border border-amber-300 p-3 rounded-xl min-w-[180px]">
+                            <div className="flex items-center justify-between">
+                                <span className="text-xs font-bold text-amber-600 bg-amber-50 px-2 py-0.5 rounded-full">HOT</span>
+                                <span className="text-lg font-black text-amber-600">15% OFF</span>
+                            </div>
+                            <span className="text-sm font-bold text-gray-900 mt-2">💇 Haircut Special</span>
+                            <span className="text-xs text-gray-600 mt-1">Valid till Dec 31</span>
+                            <span className="text-xs text-amber-500 mt-2 font-medium">Code: HAIR15</span>
+                        </div>
+                        {/* Discount 3 - Spa Package */}
+                        <div className="flex flex-col bg-gradient-to-br from-teal-100 to-teal-200 border border-teal-300 p-3 rounded-xl min-w-[180px]">
+                            <div className="flex items-center justify-between">
+                                <span className="text-xs font-bold text-teal-600 bg-teal-50 px-2 py-0.5 rounded-full">COMBO</span>
+                                <span className="text-lg font-black text-teal-600">25% OFF</span>
+                            </div>
+                            <span className="text-sm font-bold text-gray-900 mt-2">🧖 Spa Package</span>
+                            <span className="text-xs text-gray-600 mt-1">Massage + Facial</span>
+                            <span className="text-xs text-teal-500 mt-2 font-medium">Code: SPA25</span>
+                        </div>
+                        {/* Discount 4 - Weekend */}
+                        <div className="flex flex-col bg-gradient-to-br from-purple-100 to-purple-200 border border-purple-300 p-3 rounded-xl min-w-[180px]">
+                            <div className="flex items-center justify-between">
+                                <span className="text-xs font-bold text-purple-600 bg-purple-50 px-2 py-0.5 rounded-full">WEEKEND</span>
+                                <span className="text-lg font-black text-purple-600">10% OFF</span>
+                            </div>
+                            <span className="text-sm font-bold text-gray-900 mt-2">Weekend Special</span>
+                            <span className="text-xs text-gray-600 mt-1">Sat & Sun only</span>
+                            <span className="text-xs text-purple-500 mt-2 font-medium">Code: WEEKEND10</span>
+                        </div>
+                        {/* Discount 5 - Bridal */}
+                        <div className="flex flex-col bg-gradient-to-br from-pink-100 to-pink-200 border border-pink-300 p-3 rounded-xl min-w-[180px]">
+                            <div className="flex items-center justify-between">
+                                <span className="text-xs font-bold text-pink-600 bg-pink-50 px-2 py-0.5 rounded-full">BRIDAL</span>
+                                <span className="text-lg font-black text-pink-600">30% OFF</span>
+                            </div>
+                            <span className="text-sm font-bold text-gray-900 mt-2">👰 Bridal Package</span>
+                            <span className="text-xs text-gray-600 mt-1">Full bridal makeup</span>
+                            <span className="text-xs text-pink-500 mt-2 font-medium">Code: BRIDE30</span>
+                        </div>
+                        {/* Discount 6 - Refer */}
+                        <div className="flex flex-col bg-gradient-to-br from-blue-100 to-blue-200 border border-blue-300 p-3 rounded-xl min-w-[180px]">
+                            <div className="flex items-center justify-between">
+                                <span className="text-xs font-bold text-blue-600 bg-blue-50 px-2 py-0.5 rounded-full">REFER</span>
+                                <span className="text-lg font-black text-blue-600">$10 OFF</span>
+                            </div>
+                            <span className="text-sm font-bold text-gray-900 mt-2">Refer a Friend</span>
+                            <span className="text-xs text-gray-600 mt-1">Both get $10 off</span>
+                            <span className="text-xs text-blue-500 mt-2 font-medium">Code: FRIEND10</span>
+                        </div>
+                    </div>
+                </AutoScroll>
+            </div>
         </div>
     )
 }
