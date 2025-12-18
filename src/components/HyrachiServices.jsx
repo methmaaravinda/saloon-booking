@@ -333,145 +333,149 @@ export default function HyrachiServices() {
         },
     ]
     return (
-        <div className="flex flex-col border-l border-gray-400 gap-4 ">
+        <div className="flex flex-col border-l border-gray-400 gap-4">
+            {/* All Services - Purple/Indigo Theme */}
             <div>
                 <h1 className="inline-block text-sm font-semibold text-gray-900 px-2 pt-1 pb-2">
                     ✂️ All Services
                 </h1>
                 <AutoScroll speed={10} pauseOnHover={true}>
                     <div className="flex flex-nowrap gap-2 overflow-x-auto whitespace-nowrap pl-3">
-                        <h2 className="text-xs font-medium text-gray-900 border border-gray-400 p-2 rounded-lg">
+                        <h2 className="text-xs font-medium text-indigo-700 border-2 border-indigo-300 p-2 rounded-lg shadow-sm">
                             💇 Hair Services
                         </h2>
-                        <h2 className="text-xs font-medium text-gray-900 border border-gray-400 p-2 rounded-lg">
+                        <h2 className="text-xs font-medium text-indigo-700 border-2 border-indigo-300 p-2 rounded-lg shadow-sm">
                             💆 Facial Services
                         </h2>
-                        <h2 className="text-xs font-medium text-gray-900 border border-gray-400 p-2 rounded-lg">
+                        <h2 className="text-xs font-medium text-indigo-700 border-2 border-indigo-300 p-2 rounded-lg shadow-sm">
                             💆‍♀️ Manicure Services
                         </h2>
-                        <h2 className="text-xs font-medium text-gray-900 border border-gray-400 p-2 rounded-lg">
+                        <h2 className="text-xs font-medium text-indigo-700 border-2 border-indigo-300 p-2 rounded-lg shadow-sm">
                             💆‍♀️ Pedicure Services
                         </h2>
                     </div>
                 </AutoScroll>
             </div>
+
+            {/* Next Available Slots - Keep Original Green/Blue */}
             <div>
-            <h1 className="inline-flex items-center gap-1 text-sm font-semibold text-gray-900 px-2 pt-1 pb-2">
-                ⏰ Next Available Slots
-            </h1>
+                <h1 className="inline-flex items-center gap-1 text-sm font-semibold text-gray-900 px-2 pt-1 pb-2">
+                    ⏰ Next Available Slots
+                </h1>
                 <AutoScroll speed={15} pauseOnHover={true}>
                     <div className="flex flex-nowrap gap-3 overflow-x-auto whitespace-nowrap pl-3">
                         {/* Slot 1 - Today */}
-                        <button className="flex flex-col items-start bg-gradient-to-br from-emerald-50 to-emerald-100/50 border-2 border-emerald-300 p-3.5 rounded-xl min-w-[130px] hover:from-emerald-100 hover:to-emerald-200 hover:border-emerald-400 hover:shadow-md transition-all group">
+                        <button className="flex flex-col items-start bg-gradient-to-br from-emerald-50 to-emerald-100/50 border-2 border-emerald-300 p-3.5 rounded-xl min-w-[130px] shadow-md active:scale-95 transition-all">
                             <div className="flex items-center gap-1.5 w-full">
                                 <span className="w-2 h-2 bg-emerald-500 rounded-full"></span>
                                 <span className="text-xs font-bold text-emerald-700 uppercase tracking-wide">Today</span>
                             </div>
-                            <span className="text-xl font-extrabold text-gray-900 mt-2 group-hover:text-emerald-700 transition-colors">10:30</span>
+                            <span className="text-xl font-extrabold text-gray-900 mt-2">10:30</span>
                             <span className="text-xs font-medium text-emerald-600 mt-0.5">AM</span>
                         </button>
                         {/* Slot 2 - Today */}
-                        <button className="flex flex-col items-start bg-gradient-to-br from-emerald-50 to-emerald-100/50 border-2 border-emerald-300 p-3.5 rounded-xl min-w-[130px] hover:from-emerald-100 hover:to-emerald-200 hover:border-emerald-400 hover:shadow-md transition-all group">
+                        <button className="flex flex-col items-start bg-gradient-to-br from-emerald-50 to-emerald-100/50 border-2 border-emerald-300 p-3.5 rounded-xl min-w-[130px] shadow-md active:scale-95 transition-all">
                             <div className="flex items-center gap-1.5 w-full">
                                 <span className="w-2 h-2 bg-emerald-500 rounded-full"></span>
                                 <span className="text-xs font-bold text-emerald-700 uppercase tracking-wide">Today</span>
                             </div>
-                            <span className="text-xl font-extrabold text-gray-900 mt-2 group-hover:text-emerald-700 transition-colors">2:00</span>
+                            <span className="text-xl font-extrabold text-gray-900 mt-2">2:00</span>
                             <span className="text-xs font-medium text-emerald-600 mt-0.5">PM</span>
                         </button>
                         {/* Slot 3 - Today */}
-                        <button className="flex flex-col items-start bg-gradient-to-br from-emerald-50 to-emerald-100/50 border-2 border-emerald-300 p-3.5 rounded-xl min-w-[130px] hover:from-emerald-100 hover:to-emerald-200 hover:border-emerald-400 hover:shadow-md transition-all group">
+                        <button className="flex flex-col items-start bg-gradient-to-br from-emerald-50 to-emerald-100/50 border-2 border-emerald-300 p-3.5 rounded-xl min-w-[130px] shadow-md active:scale-95 transition-all">
                             <div className="flex items-center gap-1.5 w-full">
                                 <span className="w-2 h-2 bg-emerald-500 rounded-full"></span>
                                 <span className="text-xs font-bold text-emerald-700 uppercase tracking-wide">Today</span>
                             </div>
-                            <span className="text-xl font-extrabold text-gray-900 mt-2 group-hover:text-emerald-700 transition-colors">4:30</span>
+                            <span className="text-xl font-extrabold text-gray-900 mt-2">4:30</span>
                             <span className="text-xs font-medium text-emerald-600 mt-0.5">PM</span>
                         </button>
                         {/* Slot 4 - Tomorrow */}
-                        <button className="flex flex-col items-start bg-gradient-to-br from-blue-50 to-blue-100/50 border-2 border-blue-300 p-3.5 rounded-xl min-w-[130px] hover:from-blue-100 hover:to-blue-200 hover:border-blue-400 hover:shadow-md transition-all group">
+                        <button className="flex flex-col items-start bg-gradient-to-br from-blue-50 to-blue-100/50 border-2 border-blue-300 p-3.5 rounded-xl min-w-[130px] shadow-md active:scale-95 transition-all">
                             <div className="flex items-center gap-1.5 w-full">
                                 <span className="w-2 h-2 bg-blue-500 rounded-full"></span>
                                 <span className="text-xs font-bold text-blue-700 uppercase tracking-wide">Tomorrow</span>
                             </div>
-                            <span className="text-xl font-extrabold text-gray-900 mt-2 group-hover:text-blue-700 transition-colors">9:00</span>
+                            <span className="text-xl font-extrabold text-gray-900 mt-2">9:00</span>
                             <span className="text-xs font-medium text-blue-600 mt-0.5">AM</span>
                         </button>
                         {/* Slot 5 - Tomorrow */}
-                        <button className="flex flex-col items-start bg-gradient-to-br from-blue-50 to-blue-100/50 border-2 border-blue-300 p-3.5 rounded-xl min-w-[130px] hover:from-blue-100 hover:to-blue-200 hover:border-blue-400 hover:shadow-md transition-all group">
+                        <button className="flex flex-col items-start bg-gradient-to-br from-blue-50 to-blue-100/50 border-2 border-blue-300 p-3.5 rounded-xl min-w-[130px] shadow-md active:scale-95 transition-all">
                             <div className="flex items-center gap-1.5 w-full">
                                 <span className="w-2 h-2 bg-blue-500 rounded-full"></span>
                                 <span className="text-xs font-bold text-blue-700 uppercase tracking-wide">Tomorrow</span>
                             </div>
-                            <span className="text-xl font-extrabold text-gray-900 mt-2 group-hover:text-blue-700 transition-colors">11:30</span>
+                            <span className="text-xl font-extrabold text-gray-900 mt-2">11:30</span>
                             <span className="text-xs font-medium text-blue-600 mt-0.5">AM</span>
                         </button>
                         {/* Slot 6 - Tomorrow */}
-                        <button className="flex flex-col items-start bg-gradient-to-br from-blue-50 to-blue-100/50 border-2 border-blue-300 p-3.5 rounded-xl min-w-[130px] hover:from-blue-100 hover:to-blue-200 hover:border-blue-400 hover:shadow-md transition-all group">
+                        <button className="flex flex-col items-start bg-gradient-to-br from-blue-50 to-blue-100/50 border-2 border-blue-300 p-3.5 rounded-xl min-w-[130px] shadow-md active:scale-95 transition-all">
                             <div className="flex items-center gap-1.5 w-full">
                                 <span className="w-2 h-2 bg-blue-500 rounded-full"></span>
                                 <span className="text-xs font-bold text-blue-700 uppercase tracking-wide">Tomorrow</span>
                             </div>
-                            <span className="text-xl font-extrabold text-gray-900 mt-2 group-hover:text-blue-700 transition-colors">3:00</span>
+                            <span className="text-xl font-extrabold text-gray-900 mt-2">3:00</span>
                             <span className="text-xs font-medium text-blue-600 mt-0.5">PM</span>
                         </button>
                         {/* Slot 7 - Thu */}
-                        <button className="flex flex-col items-start bg-gradient-to-br from-gray-50 to-gray-100/50 border-2 border-gray-300 p-3.5 rounded-xl min-w-[130px] hover:from-gray-100 hover:to-gray-200 hover:border-gray-400 hover:shadow-md transition-all group">
+                        <button className="flex flex-col items-start bg-gradient-to-br from-gray-50 to-gray-100/50 border-2 border-gray-300 p-3.5 rounded-xl min-w-[130px] shadow-md active:scale-95 transition-all">
                             <div className="flex items-center gap-1.5 w-full">
                                 <span className="w-2 h-2 bg-gray-400 rounded-full"></span>
                                 <span className="text-xs font-bold text-gray-600 uppercase tracking-wide">Thu, Dec 19</span>
                             </div>
-                            <span className="text-xl font-extrabold text-gray-900 mt-2 group-hover:text-gray-700 transition-colors">10:00</span>
+                            <span className="text-xl font-extrabold text-gray-900 mt-2">10:00</span>
                             <span className="text-xs font-medium text-gray-500 mt-0.5">AM</span>
                         </button>
                         {/* Slot 8 - Fri */}
-                        <button className="flex flex-col items-start bg-gradient-to-br from-gray-50 to-gray-100/50 border-2 border-gray-300 p-3.5 rounded-xl min-w-[130px] hover:from-gray-100 hover:to-gray-200 hover:border-gray-400 hover:shadow-md transition-all group">
+                        <button className="flex flex-col items-start bg-gradient-to-br from-gray-50 to-gray-100/50 border-2 border-gray-300 p-3.5 rounded-xl min-w-[130px] shadow-md active:scale-95 transition-all">
                             <div className="flex items-center gap-1.5 w-full">
                                 <span className="w-2 h-2 bg-gray-400 rounded-full"></span>
                                 <span className="text-xs font-bold text-gray-600 uppercase tracking-wide">Fri, Dec 20</span>
                             </div>
-                            <span className="text-xl font-extrabold text-gray-900 mt-2 group-hover:text-gray-700 transition-colors">1:00</span>
+                            <span className="text-xl font-extrabold text-gray-900 mt-2">1:00</span>
                             <span className="text-xs font-medium text-gray-500 mt-0.5">PM</span>
                         </button>
                     </div>
                 </AutoScroll>
             </div>
-            {/* My Bookings Section */}
+
+            {/* My Bookings - Teal/Cyan Theme */}
             <div>
                 <h1 className="inline-block text-sm font-semibold text-gray-900 px-2 pt-1 pb-2">
-                📅 My Bookings
+                    📅 My Bookings
                 </h1>
                 <AutoScroll speed={12} pauseOnHover={true}>
                     <div className="flex flex-nowrap gap-3 overflow-x-auto whitespace-nowrap pl-3 pb-3">
                         {/* Upcoming Booking 1 */}
-                        <div className="flex flex-col bg-gradient-to-br from-emerald-50 to-emerald-100 border-2 border-emerald-400 p-3 rounded-xl min-w-[160px]">
+                        <div className="flex flex-col bg-gradient-to-br from-teal-50 to-teal-100 border-2 border-teal-400 p-3 rounded-xl min-w-[160px] shadow-md">
                             <div className="flex items-center justify-between">
-                                <span className="text-xs font-bold text-emerald-600">Upcoming</span>
-                                <span className="w-2 h-2 bg-emerald-500 rounded-full animate-pulse"></span>
+                                <span className="text-xs font-bold text-teal-700 bg-teal-200 px-2 py-0.5 rounded-md">Upcoming</span>
+                                <span className="w-2 h-2 bg-teal-500 rounded-full animate-pulse"></span>
                             </div>
                             <span className="text-sm font-bold text-gray-900 mt-2">💇 Haircut</span>
-                            <span className="text-xs text-gray-600 mt-1">Today, 3:00 PM</span>
-                            <span className="text-xs text-gray-500 mt-1">with Sarah J.</span>
+                            <span className="text-xs text-gray-700 mt-1 font-medium">Today, 3:00 PM</span>
+                            <span className="text-xs text-teal-600 mt-1">with Sarah J.</span>
                         </div>
                         {/* Upcoming Booking 2 */}
-                        <div className="flex flex-col bg-gradient-to-br from-blue-50 to-blue-100 border-2 border-blue-400 p-3 rounded-xl min-w-[160px]">
+                        <div className="flex flex-col bg-gradient-to-br from-cyan-50 to-cyan-100 border-2 border-cyan-400 p-3 rounded-xl min-w-[160px] shadow-md">
                             <div className="flex items-center justify-between">
-                                <span className="text-xs font-bold text-blue-600">Confirmed</span>
-                                <span className="w-2 h-2 bg-blue-500 rounded-full"></span>
+                                <span className="text-xs font-bold text-cyan-700 bg-cyan-200 px-2 py-0.5 rounded-md">Confirmed</span>
+                                <span className="w-2 h-2 bg-cyan-500 rounded-full"></span>
                             </div>
                             <span className="text-sm font-bold text-gray-900 mt-2">💆 Facial</span>
-                            <span className="text-xs text-gray-600 mt-1">Tomorrow, 11:00 AM</span>
-                            <span className="text-xs text-gray-500 mt-1">with Emily R.</span>
+                            <span className="text-xs text-gray-700 mt-1 font-medium">Tomorrow, 11:00 AM</span>
+                            <span className="text-xs text-cyan-600 mt-1">with Emily R.</span>
                         </div>
                         {/* Upcoming Booking 3 */}
-                        <div className="flex flex-col bg-gradient-to-br from-purple-50 to-purple-100 border-2 border-purple-400 p-3 rounded-xl min-w-[160px]">
+                        <div className="flex flex-col bg-gradient-to-br from-sky-50 to-sky-100 border-2 border-sky-400 p-3 rounded-xl min-w-[160px] shadow-md">
                             <div className="flex items-center justify-between">
-                                <span className="text-xs font-bold text-purple-600">Confirmed</span>
-                                <span className="w-2 h-2 bg-purple-500 rounded-full"></span>
+                                <span className="text-xs font-bold text-sky-700 bg-sky-200 px-2 py-0.5 rounded-md">Confirmed</span>
+                                <span className="w-2 h-2 bg-sky-500 rounded-full"></span>
                             </div>
                             <span className="text-sm font-bold text-gray-900 mt-2">💅 Manicure</span>
-                            <span className="text-xs text-gray-600 mt-1">Sat, Dec 21</span>
-                            <span className="text-xs text-gray-500 mt-1">with Lisa M.</span>
+                            <span className="text-xs text-gray-700 mt-1 font-medium">Sat, Dec 21</span>
+                            <span className="text-xs text-sky-600 mt-1">with Lisa M.</span>
                         </div>
                         {/* Past Booking 1 */}
                         <div className="flex flex-col bg-gray-100 border border-gray-300 p-3 rounded-xl min-w-[160px] opacity-70">
@@ -496,7 +500,8 @@ export default function HyrachiServices() {
                     </div>
                 </AutoScroll>
             </div>
-            {/* Discounts Section */}
+
+            {/* Discounts Section - Vibrant/Warm Theme */}
             <div>
                 <h1 className="inline-block text-sm font-semibold text-gray-900 px-2 pt-1 pb-2">
                     🎉 Discounts & Offers
@@ -504,64 +509,64 @@ export default function HyrachiServices() {
                 <AutoScroll speed={12} pauseOnHover={true}>
                     <div className="flex flex-nowrap gap-3 overflow-x-auto whitespace-nowrap pl-3 pb-3">
                         {/* Discount 1 - New Customer */}
-                        <div className="flex flex-col bg-gradient-to-br from-rose-100 to-rose-200 border border-rose-300 p-3 rounded-xl min-w-[180px]">
+                        <div className="flex flex-col bg-gradient-to-br from-rose-100 to-rose-200 border-2 border-rose-400 p-3 rounded-xl min-w-[180px] shadow-md">
                             <div className="flex items-center justify-between">
-                                <span className="text-xs font-bold text-rose-600 bg-rose-50 px-2 py-0.5 rounded-full">NEW</span>
+                                <span className="text-xs font-bold text-rose-700 bg-rose-300 px-2 py-0.5 rounded-full">NEW</span>
                                 <span className="text-lg font-black text-rose-600">20% OFF</span>
                             </div>
                             <span className="text-sm font-bold text-gray-900 mt-2">First Visit Discount</span>
-                            <span className="text-xs text-gray-600 mt-1">On any service</span>
-                            <span className="text-xs text-rose-500 mt-2 font-medium">Code: WELCOME20</span>
+                            <span className="text-xs text-gray-700 mt-1">On any service</span>
+                            <span className="text-xs text-rose-700 mt-2 font-medium bg-rose-300/50 px-2 py-0.5 rounded">Code: WELCOME20</span>
                         </div>
                         {/* Discount 2 - Haircut */}
-                        <div className="flex flex-col bg-gradient-to-br from-amber-100 to-amber-200 border border-amber-300 p-3 rounded-xl min-w-[180px]">
+                        <div className="flex flex-col bg-gradient-to-br from-amber-100 to-amber-200 border-2 border-amber-400 p-3 rounded-xl min-w-[180px] shadow-md">
                             <div className="flex items-center justify-between">
-                                <span className="text-xs font-bold text-amber-600 bg-amber-50 px-2 py-0.5 rounded-full">HOT</span>
+                                <span className="text-xs font-bold text-amber-700 bg-amber-300 px-2 py-0.5 rounded-full">HOT</span>
                                 <span className="text-lg font-black text-amber-600">15% OFF</span>
                             </div>
                             <span className="text-sm font-bold text-gray-900 mt-2">💇 Haircut Special</span>
-                            <span className="text-xs text-gray-600 mt-1">Valid till Dec 31</span>
-                            <span className="text-xs text-amber-500 mt-2 font-medium">Code: HAIR15</span>
+                            <span className="text-xs text-gray-700 mt-1">Valid till Dec 31</span>
+                            <span className="text-xs text-amber-700 mt-2 font-medium bg-amber-300/50 px-2 py-0.5 rounded">Code: HAIR15</span>
                         </div>
                         {/* Discount 3 - Spa Package */}
-                        <div className="flex flex-col bg-gradient-to-br from-teal-100 to-teal-200 border border-teal-300 p-3 rounded-xl min-w-[180px]">
+                        <div className="flex flex-col bg-gradient-to-br from-emerald-100 to-emerald-200 border-2 border-emerald-400 p-3 rounded-xl min-w-[180px] shadow-md">
                             <div className="flex items-center justify-between">
-                                <span className="text-xs font-bold text-teal-600 bg-teal-50 px-2 py-0.5 rounded-full">COMBO</span>
-                                <span className="text-lg font-black text-teal-600">25% OFF</span>
+                                <span className="text-xs font-bold text-emerald-700 bg-emerald-300 px-2 py-0.5 rounded-full">COMBO</span>
+                                <span className="text-lg font-black text-emerald-600">25% OFF</span>
                             </div>
                             <span className="text-sm font-bold text-gray-900 mt-2">🧖 Spa Package</span>
-                            <span className="text-xs text-gray-600 mt-1">Massage + Facial</span>
-                            <span className="text-xs text-teal-500 mt-2 font-medium">Code: SPA25</span>
+                            <span className="text-xs text-gray-700 mt-1">Massage + Facial</span>
+                            <span className="text-xs text-emerald-700 mt-2 font-medium bg-emerald-300/50 px-2 py-0.5 rounded">Code: SPA25</span>
                         </div>
                         {/* Discount 4 - Weekend */}
-                        <div className="flex flex-col bg-gradient-to-br from-purple-100 to-purple-200 border border-purple-300 p-3 rounded-xl min-w-[180px]">
+                        <div className="flex flex-col bg-gradient-to-br from-violet-100 to-violet-200 border-2 border-violet-400 p-3 rounded-xl min-w-[180px] shadow-md">
                             <div className="flex items-center justify-between">
-                                <span className="text-xs font-bold text-purple-600 bg-purple-50 px-2 py-0.5 rounded-full">WEEKEND</span>
-                                <span className="text-lg font-black text-purple-600">10% OFF</span>
+                                <span className="text-xs font-bold text-violet-700 bg-violet-300 px-2 py-0.5 rounded-full">WEEKEND</span>
+                                <span className="text-lg font-black text-violet-600">10% OFF</span>
                             </div>
                             <span className="text-sm font-bold text-gray-900 mt-2">Weekend Special</span>
-                            <span className="text-xs text-gray-600 mt-1">Sat & Sun only</span>
-                            <span className="text-xs text-purple-500 mt-2 font-medium">Code: WEEKEND10</span>
+                            <span className="text-xs text-gray-700 mt-1">Sat & Sun only</span>
+                            <span className="text-xs text-violet-700 mt-2 font-medium bg-violet-300/50 px-2 py-0.5 rounded">Code: WEEKEND10</span>
                         </div>
                         {/* Discount 5 - Bridal */}
-                        <div className="flex flex-col bg-gradient-to-br from-pink-100 to-pink-200 border border-pink-300 p-3 rounded-xl min-w-[180px]">
+                        <div className="flex flex-col bg-gradient-to-br from-fuchsia-100 to-fuchsia-200 border-2 border-fuchsia-400 p-3 rounded-xl min-w-[180px] shadow-md">
                             <div className="flex items-center justify-between">
-                                <span className="text-xs font-bold text-pink-600 bg-pink-50 px-2 py-0.5 rounded-full">BRIDAL</span>
-                                <span className="text-lg font-black text-pink-600">30% OFF</span>
+                                <span className="text-xs font-bold text-fuchsia-700 bg-fuchsia-300 px-2 py-0.5 rounded-full">BRIDAL</span>
+                                <span className="text-lg font-black text-fuchsia-600">30% OFF</span>
                             </div>
                             <span className="text-sm font-bold text-gray-900 mt-2">👰 Bridal Package</span>
-                            <span className="text-xs text-gray-600 mt-1">Full bridal makeup</span>
-                            <span className="text-xs text-pink-500 mt-2 font-medium">Code: BRIDE30</span>
+                            <span className="text-xs text-gray-700 mt-1">Full bridal makeup</span>
+                            <span className="text-xs text-fuchsia-700 mt-2 font-medium bg-fuchsia-300/50 px-2 py-0.5 rounded">Code: BRIDE30</span>
                         </div>
                         {/* Discount 6 - Refer */}
-                        <div className="flex flex-col bg-gradient-to-br from-blue-100 to-blue-200 border border-blue-300 p-3 rounded-xl min-w-[180px]">
+                        <div className="flex flex-col bg-gradient-to-br from-blue-100 to-blue-200 border-2 border-blue-400 p-3 rounded-xl min-w-[180px] shadow-md">
                             <div className="flex items-center justify-between">
-                                <span className="text-xs font-bold text-blue-600 bg-blue-50 px-2 py-0.5 rounded-full">REFER</span>
+                                <span className="text-xs font-bold text-blue-700 bg-blue-300 px-2 py-0.5 rounded-full">REFER</span>
                                 <span className="text-lg font-black text-blue-600">$10 OFF</span>
                             </div>
                             <span className="text-sm font-bold text-gray-900 mt-2">Refer a Friend</span>
-                            <span className="text-xs text-gray-600 mt-1">Both get $10 off</span>
-                            <span className="text-xs text-blue-500 mt-2 font-medium">Code: FRIEND10</span>
+                            <span className="text-xs text-gray-700 mt-1">Both get $10 off</span>
+                            <span className="text-xs text-blue-700 mt-2 font-medium bg-blue-300/50 px-2 py-0.5 rounded">Code: FRIEND10</span>
                         </div>
                     </div>
                 </AutoScroll>
