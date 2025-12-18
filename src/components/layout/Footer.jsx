@@ -40,7 +40,7 @@ export default function SearchableFooter({ onFocus, query, onQueryChange, isSear
 
     // Different styles for top vs bottom positioning
     const footerClasses = isSearchActive
-        ? "sticky fixed left-50% top-50% shrink-0 border-b border-gray-800 bg-gradient-to-r from-gray-50 via-gray-100 to-gray-50 h-16 flex items-center shadow-md"
+        ? "sticky top-0 left-0 right-0 shrink-0 border-b border-gray-800 bg-gradient-to-r from-gray-50 via-gray-100 to-gray-50 h-16 flex items-center shadow-md"
         : "sticky bottom-0 left-0 right-0 shrink-0 border-t border-gray-800 bg-gradient-to-r from-gray-50 via-gray-100 to-gray-50 h-16 flex items-center shadow-md"
 
     return (

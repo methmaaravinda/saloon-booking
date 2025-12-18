@@ -21,8 +21,8 @@ export default function MainCard({
     
     return (
         <div className={`container mx-auto ${containerPadding}`}>
-            <div className="bg-white border rounded-xl border-gray-500 relative shadow-md">
-                <div className="p-4 border-b border-gray-500 rounded-t-xl">
+            <div className="bg-white static-border static-border-blue rounded-xl relative shadow-md">
+                <div className="p-4 static-border-b static-border-blue rounded-t-xl">
                     {navigateTo && (
                         <button
                             onClick={() => navigate(navigateTo)}
