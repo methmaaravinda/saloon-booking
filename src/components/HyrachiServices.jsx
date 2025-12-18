@@ -333,10 +333,10 @@ export default function HyrachiServices() {
         },
     ]
     return (
-        <div className="flex flex-col border-l border-gray-400 gap-4">
+        <div className="flex flex-col border-l border-gray-400 gap-4 ">
             <div>
                 <h1 className="inline-block text-sm font-semibold text-gray-900 px-2 pt-1 pb-2">
-                    All Services
+                    ✂️ All Services
                 </h1>
                 <AutoScroll speed={10} pauseOnHover={true}>
                     <div className="flex flex-nowrap gap-2 overflow-x-auto whitespace-nowrap pl-3">
@@ -356,50 +356,82 @@ export default function HyrachiServices() {
                 </AutoScroll>
             </div>
             <div>
-                <h1 className="inline-block text-sm font-semibold text-gray-900 px-2 pt-1 pb-2">
-                    Next Available Slots
-                </h1>
+            <h1 className="inline-flex items-center gap-1 text-sm font-semibold text-gray-900 px-2 pt-1 pb-2">
+                ⏰ Next Available Slots
+            </h1>
                 <AutoScroll speed={15} pauseOnHover={true}>
                     <div className="flex flex-nowrap gap-3 overflow-x-auto whitespace-nowrap pl-3">
                         {/* Slot 1 - Today */}
-                        <button className="flex flex-col bg-white border border-gray-400 p-3 rounded-xl min-w-[120px] hover:bg-gray-50 hover:border-gray-500 transition-all">
-                            <span className="text-xs font-bold text-gray-600">Today</span>
-                            <span className="text-lg font-bold text-gray-900 mt-1">10:30 AM</span>
+                        <button className="flex flex-col items-start bg-gradient-to-br from-emerald-50 to-emerald-100/50 border-2 border-emerald-300 p-3.5 rounded-xl min-w-[130px] hover:from-emerald-100 hover:to-emerald-200 hover:border-emerald-400 hover:shadow-md transition-all group">
+                            <div className="flex items-center gap-1.5 w-full">
+                                <span className="w-2 h-2 bg-emerald-500 rounded-full"></span>
+                                <span className="text-xs font-bold text-emerald-700 uppercase tracking-wide">Today</span>
+                            </div>
+                            <span className="text-xl font-extrabold text-gray-900 mt-2 group-hover:text-emerald-700 transition-colors">10:30</span>
+                            <span className="text-xs font-medium text-emerald-600 mt-0.5">AM</span>
                         </button>
                         {/* Slot 2 - Today */}
-                        <button className="flex flex-col bg-white border border-gray-400 p-3 rounded-xl min-w-[120px] hover:bg-gray-50 hover:border-gray-500 transition-all">
-                            <span className="text-xs font-bold text-gray-600">Today</span>
-                            <span className="text-lg font-bold text-gray-900 mt-1">2:00 A.M</span>
+                        <button className="flex flex-col items-start bg-gradient-to-br from-emerald-50 to-emerald-100/50 border-2 border-emerald-300 p-3.5 rounded-xl min-w-[130px] hover:from-emerald-100 hover:to-emerald-200 hover:border-emerald-400 hover:shadow-md transition-all group">
+                            <div className="flex items-center gap-1.5 w-full">
+                                <span className="w-2 h-2 bg-emerald-500 rounded-full"></span>
+                                <span className="text-xs font-bold text-emerald-700 uppercase tracking-wide">Today</span>
+                            </div>
+                            <span className="text-xl font-extrabold text-gray-900 mt-2 group-hover:text-emerald-700 transition-colors">2:00</span>
+                            <span className="text-xs font-medium text-emerald-600 mt-0.5">PM</span>
                         </button>
                         {/* Slot 3 - Today */}
-                        <button className="flex flex-col bg-white border border-gray-400 p-3 rounded-xl min-w-[120px] hover:bg-gray-50 hover:border-gray-500 transition-all">
-                            <span className="text-xs font-bold text-gray-600">Today</span>
-                            <span className="text-lg font-bold text-gray-900 mt-1">4:30 A.M</span>
+                        <button className="flex flex-col items-start bg-gradient-to-br from-emerald-50 to-emerald-100/50 border-2 border-emerald-300 p-3.5 rounded-xl min-w-[130px] hover:from-emerald-100 hover:to-emerald-200 hover:border-emerald-400 hover:shadow-md transition-all group">
+                            <div className="flex items-center gap-1.5 w-full">
+                                <span className="w-2 h-2 bg-emerald-500 rounded-full"></span>
+                                <span className="text-xs font-bold text-emerald-700 uppercase tracking-wide">Today</span>
+                            </div>
+                            <span className="text-xl font-extrabold text-gray-900 mt-2 group-hover:text-emerald-700 transition-colors">4:30</span>
+                            <span className="text-xs font-medium text-emerald-600 mt-0.5">PM</span>
                         </button>
                         {/* Slot 4 - Tomorrow */}
-                        <button className="flex flex-col bg-white border border-gray-400 p-3 rounded-xl min-w-[120px] hover:bg-gray-50 hover:border-gray-500 transition-all">
-                            <span className="text-xs font-bold text-gray-600">Tomorrow</span>
-                            <span className="text-lg font-bold text-gray-900 mt-1">9:00 AM</span>
+                        <button className="flex flex-col items-start bg-gradient-to-br from-blue-50 to-blue-100/50 border-2 border-blue-300 p-3.5 rounded-xl min-w-[130px] hover:from-blue-100 hover:to-blue-200 hover:border-blue-400 hover:shadow-md transition-all group">
+                            <div className="flex items-center gap-1.5 w-full">
+                                <span className="w-2 h-2 bg-blue-500 rounded-full"></span>
+                                <span className="text-xs font-bold text-blue-700 uppercase tracking-wide">Tomorrow</span>
+                            </div>
+                            <span className="text-xl font-extrabold text-gray-900 mt-2 group-hover:text-blue-700 transition-colors">9:00</span>
+                            <span className="text-xs font-medium text-blue-600 mt-0.5">AM</span>
                         </button>
                         {/* Slot 5 - Tomorrow */}
-                        <button className="flex flex-col bg-white border border-gray-400 p-3 rounded-xl min-w-[120px] hover:bg-gray-50 hover:border-gray-500 transition-all">
-                            <span className="text-xs font-bold text-gray-600">Tomorrow</span>
-                            <span className="text-lg font-bold text-gray-900 mt-1">11:30 AM</span>
+                        <button className="flex flex-col items-start bg-gradient-to-br from-blue-50 to-blue-100/50 border-2 border-blue-300 p-3.5 rounded-xl min-w-[130px] hover:from-blue-100 hover:to-blue-200 hover:border-blue-400 hover:shadow-md transition-all group">
+                            <div className="flex items-center gap-1.5 w-full">
+                                <span className="w-2 h-2 bg-blue-500 rounded-full"></span>
+                                <span className="text-xs font-bold text-blue-700 uppercase tracking-wide">Tomorrow</span>
+                            </div>
+                            <span className="text-xl font-extrabold text-gray-900 mt-2 group-hover:text-blue-700 transition-colors">11:30</span>
+                            <span className="text-xs font-medium text-blue-600 mt-0.5">AM</span>
                         </button>
                         {/* Slot 6 - Tomorrow */}
-                        <button className="flex flex-col bg-white border border-gray-400 p-3 rounded-xl min-w-[120px] hover:bg-gray-50 hover:border-gray-500 transition-all">
-                            <span className="text-xs font-bold text-gray-600">Tomorrow</span>
-                            <span className="text-lg font-bold text-gray-900 mt-1">3:00 PM</span>
+                        <button className="flex flex-col items-start bg-gradient-to-br from-blue-50 to-blue-100/50 border-2 border-blue-300 p-3.5 rounded-xl min-w-[130px] hover:from-blue-100 hover:to-blue-200 hover:border-blue-400 hover:shadow-md transition-all group">
+                            <div className="flex items-center gap-1.5 w-full">
+                                <span className="w-2 h-2 bg-blue-500 rounded-full"></span>
+                                <span className="text-xs font-bold text-blue-700 uppercase tracking-wide">Tomorrow</span>
+                            </div>
+                            <span className="text-xl font-extrabold text-gray-900 mt-2 group-hover:text-blue-700 transition-colors">3:00</span>
+                            <span className="text-xs font-medium text-blue-600 mt-0.5">PM</span>
                         </button>
                         {/* Slot 7 - Thu */}
-                        <button className="flex flex-col bg-white border border-gray-300 p-3 rounded-xl min-w-[120px] hover:bg-gray-50 hover:border-gray-400 transition-all">
-                            <span className="text-xs font-bold text-gray-600">Thu, Dec 19</span>
-                            <span className="text-lg font-bold text-gray-900 mt-1">10:00 AM</span>
+                        <button className="flex flex-col items-start bg-gradient-to-br from-gray-50 to-gray-100/50 border-2 border-gray-300 p-3.5 rounded-xl min-w-[130px] hover:from-gray-100 hover:to-gray-200 hover:border-gray-400 hover:shadow-md transition-all group">
+                            <div className="flex items-center gap-1.5 w-full">
+                                <span className="w-2 h-2 bg-gray-400 rounded-full"></span>
+                                <span className="text-xs font-bold text-gray-600 uppercase tracking-wide">Thu, Dec 19</span>
+                            </div>
+                            <span className="text-xl font-extrabold text-gray-900 mt-2 group-hover:text-gray-700 transition-colors">10:00</span>
+                            <span className="text-xs font-medium text-gray-500 mt-0.5">AM</span>
                         </button>
                         {/* Slot 8 - Fri */}
-                        <button className="flex flex-col bg-white border border-gray-300 p-3 rounded-xl min-w-[120px] hover:bg-gray-50 hover:border-gray-400 transition-all">
-                            <span className="text-xs font-bold text-gray-600">Fri, Dec 20</span>
-                            <span className="text-lg font-bold text-gray-900 mt-1">1:00 PM</span>
+                        <button className="flex flex-col items-start bg-gradient-to-br from-gray-50 to-gray-100/50 border-2 border-gray-300 p-3.5 rounded-xl min-w-[130px] hover:from-gray-100 hover:to-gray-200 hover:border-gray-400 hover:shadow-md transition-all group">
+                            <div className="flex items-center gap-1.5 w-full">
+                                <span className="w-2 h-2 bg-gray-400 rounded-full"></span>
+                                <span className="text-xs font-bold text-gray-600 uppercase tracking-wide">Fri, Dec 20</span>
+                            </div>
+                            <span className="text-xl font-extrabold text-gray-900 mt-2 group-hover:text-gray-700 transition-colors">1:00</span>
+                            <span className="text-xs font-medium text-gray-500 mt-0.5">PM</span>
                         </button>
                     </div>
                 </AutoScroll>
@@ -407,7 +439,7 @@ export default function HyrachiServices() {
             {/* My Bookings Section */}
             <div>
                 <h1 className="inline-block text-sm font-semibold text-gray-900 px-2 pt-1 pb-2">
-                    My Bookings
+                📅 My Bookings
                 </h1>
                 <AutoScroll speed={12} pauseOnHover={true}>
                     <div className="flex flex-nowrap gap-3 overflow-x-auto whitespace-nowrap pl-3 pb-3">
