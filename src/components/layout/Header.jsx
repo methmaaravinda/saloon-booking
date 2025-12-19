@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom'
 import avatarHeader from '../../assets/avatar_header.png'
+import main_logo from '../../assets/main_logo.png'
 import Status from '../Status'
 const Header = () => {
   return (
@@ -45,31 +46,38 @@ export default Header
 
 export function HeaderWithAvatar() {
   return (
-    <header className="sticky top-0 z-50 bg-black backdrop-blur-sm border-b border-white/10">
-      <div className="mx-auto px-4">
-        <div className="flex items-center justify-between h-16">
-          {/* Brand */}
-          <Link
-            to="/"
-            className="text-lg font-bold tracking-wider text-white"
-          >
+    <header className="sticky top-0 z-50 bg-black border-b border-gray-800 shadow-2xl">
+      <style>{`
+        @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600;700&family=Nunito:wght@400;700&display=swap');
+        @keyframes pinkGlow {
+          0%, 100% { 
+            color: #ec4899;
+            text-shadow: 0 0 10px rgba(236, 72, 153, 0.8), 0 0 20px rgba(236, 72, 153, 0.5);
+          }
+          50% { 
+            color: #f472b6;
+            text-shadow: 0 0 20px rgba(244, 114, 182, 1), 0 0 30px rgba(244, 114, 182, 0.7);
+          }
+        }
+        .pink-glow {
+          animation: pinkGlow 2s ease-in-out infinite;
+        }
+      `}</style>
+      <div className="mx-auto max-w-7xl px-6 h-16 flex items-center justify-between">
+        <div className="flex flex-col leading-tight">
+          <span className="text-2xl font-bold text-white" style={{ fontFamily: "'Dancing Script', cursive" }}>
             Salon Neesha
-          </Link>
-          
-          {/* Right side */}
-          <div className="flex items-center gap-4">
-            {/* Status Badge */}
-            <Status status="open" />
-            
-            {/* Avatar */}
-            <div className="w-10 h-10 rounded-full p-[2px] bg-white">
-              <img
-                src={avatarHeader}
-                alt="Avatar"
-                className="w-full h-full rounded-full object-cover"
-              />
-            </div>
-          </div>
+          </span>
+          <span className="text-xs text-gray-500 -mt-1" style={{ fontFamily: "'Nunito', sans-serif" }}>
+            Powered by <span className="font-bold pink-glow">Skylla</span>
+          </span>
+        </div>
+        <div className="flex items-center gap-3">
+          <img
+            src={main_logo}
+            alt="Profile"
+            className="w-8 h-8 rounded-full ring-2 ring-pink-500 ring-offset-2 ring-offset-black hover:ring-pink-400 transition-all hover:scale-110"
+          />
         </div>
       </div>
     </header>
