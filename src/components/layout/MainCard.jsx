@@ -31,7 +31,7 @@ export default function MainCard({
                             <FiChevronRight size={20} />
                         </button>
                     )}
-                    <h2 className='ttext-sm ext-gray-500 font-bold'>{title}</h2>
+                    <h2 className={`${headerTextSize} text-gray-500 font-bold`}>{title}</h2>
                 </div>
                 <div className={contentClasses}>
                     {children}

@@ -6,6 +6,7 @@ import { FiUser, FiMail, FiMapPin, FiClock } from 'react-icons/fi'
 import ContactDetails from '../components/ContactDetails'
 import WorkingHours from '../components/WorkingHours'
 import AnimatedBorderDemo from '../components/Animations'
+import DiscountAndPromotions from '../components/DiscountAndPromotions'
 const Home = () => {
   return (
     // Fill the available height provided by App's main area
@@ -16,6 +17,8 @@ const Home = () => {
       <OtherAvailableSlots />
       <ContactDetails />
       <WorkingHours />
+      {/* here we need to create a component that will display the discount and promotions */}
+      <DiscountAndPromotions />
       {/* <AnimatedBorderDemo /> */}
     </div>
   )
