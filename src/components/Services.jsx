@@ -2,7 +2,8 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { IoCloseCircle } from 'react-icons/io5';
 import MainCard from './layout/MainCard';
-
+import video_url from '../assets/videoplayback.mp4'
+import facial_image from '../assets/facial-image.webp'
 export const servicesData = [
   {
     category: "Hair Services 💇‍♀️💇‍♂️",
@@ -86,48 +87,57 @@ export const servicesData = [
 const serviceDetails = {
   "Haircut (men / women / kids)": {
     description: "Professional haircut service tailored to your style. Includes consultation, wash, cut, and blow dry.",
+    videoUrl: video_url,
+    thumbnailUrl: facial_image,
     duration: "30-45 minutes",
     price: "₹300 - ₹800",
     includes: ["Style consultation", "Hair wash", "Precision cutting", "Blow dry styling", "Finishing products"],
   },
   "Hair styling (blow dry, curls, straightening)": {
     description: "Expert hair styling for any occasion. Choose from blow dry, curls, or straightening.",
+    videoUrl: "/videos/hair-styling-demo.mp4", // Path to your local video file
     duration: "45-60 minutes",
     price: "₹500 - ₹1,500",
     includes: ["Heat protection", "Professional styling", "Premium products", "Long-lasting finish"],
   },
   "Hair wash & conditioning": {
     description: "Relaxing hair wash with deep conditioning treatment for soft, manageable hair.",
+    videoUrl: "/videos/hair-wash-demo.mp4", // Path to your local video file
     duration: "20-30 minutes",
     price: "₹200 - ₹500",
     includes: ["Scalp massage", "Premium shampoo", "Deep conditioning", "Towel dry"],
   },
   "Hair coloring (full color, root touch-up)": {
     description: "Complete hair coloring service with premium products. Includes consultation and styling.",
+    videoUrl: "/videos/hair-coloring-demo.mp4", // Path to your local video file
     duration: "2-3 hours",
     price: "₹2,500 - ₹5,000",
     includes: ["Color consultation", "Scalp protection", "Premium color products", "Hair wash & conditioning", "Blow dry styling"],
   },
   "Highlights / balayage / ombré": {
     description: "Advanced hair coloring techniques for dimensional, natural-looking color.",
+    videoUrl: "/videos/highlights-demo.mp4", // Path to your local video file
     duration: "3-4 hours",
     price: "₹3,500 - ₹8,000",
     includes: ["Expert consultation", "Customized coloring", "Toning treatment", "Deep conditioning", "Professional styling"],
   },
   "Hair spa & treatments": {
     description: "Luxurious hair spa treatment to nourish and revitalize your hair.",
+    videoUrl: "/videos/hair-spa-demo.mp4", // Path to your local video file
     duration: "60-90 minutes",
     price: "₹1,500 - ₹3,500",
     includes: ["Hair analysis", "Steam treatment", "Massage therapy", "Deep nourishment mask", "Blow dry"],
   },
   "Hair smoothening / rebonding / keratin": {
     description: "Professional hair straightening treatment for smooth, frizz-free hair.",
+    videoUrl: "/videos/smoothening-demo.mp4", // Path to your local video file
     duration: "3-5 hours",
     price: "₹4,000 - ₹12,000",
     includes: ["Hair assessment", "Treatment application", "Heat styling", "Aftercare products", "Styling tips"],
   },
   "Beard trim & shave (for men)": {
     description: "Expert beard grooming and shaving service for a clean, polished look.",
+    videoUrl: "/videos/beard-trim-demo.mp4", // Path to your local video file
     duration: "20-30 minutes",
     price: "₹200 - ₹500",
     includes: ["Beard shaping", "Hot towel treatment", "Precision trimming/shaving", "Aftershave care"],
@@ -145,6 +155,8 @@ const defaultServiceDetails = {
 
 // Service Popup Component
 function ServicePopup({ isOpen, onClose, service }) {
+  const [showVideo, setShowVideo] = useState(false);
+  
   if (!isOpen) return null;
   
   const details = serviceDetails[service.name] || {
@@ -158,7 +170,7 @@ function ServicePopup({ isOpen, onClose, service }) {
       onClick={onClose}
     >
       <div 
-        className="bg-white rounded-2xl max-w-md w-full p-6 shadow-2xl static-border static-border-blue" 
+        className="bg-white rounded-2xl max-w-md w-full p-6 shadow-2xl max-h-[90vh] overflow-y-auto static-border static-border-blue" 
         onClick={(e) => e.stopPropagation()}
       >
         <div className="flex items-start justify-between mb-4">
@@ -172,6 +184,60 @@ function ServicePopup({ isOpen, onClose, service }) {
         </div>
         
         <p className="text-xs text-gray-500 mb-4">{service.category}</p>
+        
+        {/* Video Section - Local Video Player */}
+        {details.videoUrl && (
+          <div className="mb-4">
+            {!showVideo ? (
+              <div 
+                className="relative group cursor-pointer rounded-xl overflow-hidden aspect-video flex items-center justify-center"
+                onClick={() => setShowVideo(true)}
+              >
+                {/* Custom Thumbnail Image */}
+                {details.thumbnailUrl ? (
+                  <img 
+                    src={details.thumbnailUrl} 
+                    alt={`${service.name} thumbnail`}
+                    className="w-full h-full object-cover"
+                  />
+                ) : (
+                  <div className="w-full h-full bg-gradient-to-br from-gray-100 to-gray-200" />
+                )}
+                
+                {/* Play Button Overlay */}
+                <div className="absolute inset-0 bg-black/20 group-hover:bg-black/30 transition flex items-center justify-center">
+                  <div className="w-16 h-16 bg-white/90 rounded-full flex items-center justify-center group-hover:scale-110 transition shadow-lg">
+                    <svg className="w-8 h-8 text-gray-900 ml-1" fill="currentColor" viewBox="0 0 20 20">
+                      <path d="M6.3 2.841A1.5 1.5 0 004 4.11V15.89a1.5 1.5 0 002.3 1.269l9.344-5.89a1.5 1.5 0 000-2.538L6.3 2.84z"/>
+                    </svg>
+                  </div>
+                </div>
+                {/* <div className="absolute bottom-3 left-3 bg-black/60 backdrop-blur-sm text-white text-xs px-2 py-1 rounded">
+                  ▶️ Watch Demo
+                </div> */}
+              </div>
+            ) : (
+              <div className="relative rounded-xl overflow-hidden aspect-video bg-black">
+                <video
+                  className="w-full h-full"
+                  controls
+                  autoPlay
+                  controlsList="nodownload"
+                >
+                  <source src={details.videoUrl} type="video/mp4" />
+                  Your browser does not support the video tag.
+                </video>
+                <button
+                  onClick={() => setShowVideo(false)}
+                  className="absolute top-2 right-2 bg-black/60 hover:bg-black/80 text-white rounded-full w-8 h-8 flex items-center justify-center text-lg transition z-10"
+                >
+                  &times;
+                </button>
+              </div>
+            )}
+          </div>
+        )}
+        
         <p className="text-sm text-gray-700 mb-4">{details.description}</p>
         
         <div className="space-y-3 mb-6">
