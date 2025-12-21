@@ -2,6 +2,9 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { IoCloseCircle } from 'react-icons/io5';
 import MainCard from './layout/MainCard';
+import SmoothTextCycle from './layout/SmoothTextEffect';
+import TimeSlotSelection from './TimeSlotSelection';
+import { AutoScroll } from './HyrachiServices';
 import video_url from '../assets/videoplayback.mp4'
 import facial_image from '../assets/facial-image.webp'
 export const servicesData = [
@@ -156,59 +159,85 @@ const defaultServiceDetails = {
 // Service Popup Component
 function ServicePopup({ isOpen, onClose, service }) {
   const [showVideo, setShowVideo] = useState(false);
+  const [showTimeSlotSelection, setShowTimeSlotSelection] = useState(false);
+  const [hideServicePopup, setHideServicePopup] = useState(false);
+  const navigate = useNavigate();
   
   if (!isOpen) return null;
-  
+
+  const handleBookNow = () => {
+    // Hide ServicePopup and show TimeSlotSelection
+    setHideServicePopup(true);
+    setShowTimeSlotSelection(true);
+  };
+
+  const handleCloseTimeSlot = () => {
+    // Close TimeSlotSelection and show ServicePopup again
+    setShowTimeSlotSelection(false);
+    setHideServicePopup(false);
+  };
+
+  const handleFinaliseBooking = (date, slot) => {
+    console.log('Booking finalised:', { service, date, slot });
+    // Close both modals - navigation happens in TimeSlotSelection
+    setShowTimeSlotSelection(false);
+    setHideServicePopup(false);
+    onClose(); // Close ServicePopup
+  };
+
   const details = serviceDetails[service.name] || {
     ...defaultServiceDetails,
     description: `${service.name} - ${defaultServiceDetails.description}`,
   };
-  
+
   return (
-    <div 
-      className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4" 
-      onClick={onClose}
-    >
-      <div 
-        className="bg-white rounded-2xl max-w-md w-full p-6 shadow-2xl max-h-[90vh] overflow-y-auto static-border static-border-blue" 
-        onClick={(e) => e.stopPropagation()}
-      >
+    <>
+      {/* ServicePopup - Hidden when TimeSlotSelection is open */}
+      {!hideServicePopup && (
+        <div
+          className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4"
+          onClick={onClose}
+        >
+          <div
+            className="bg-white rounded-2xl max-w-md w-full p-6 shadow-2xl max-h-[90vh] overflow-y-auto static-border static-border-blue"
+            onClick={(e) => e.stopPropagation()}
+          >
         <div className="flex items-start justify-between mb-4">
           <h3 className="text-xl font-bold text-gray-900">{service.name}</h3>
-          <button 
-            onClick={onClose} 
+          <button
+            onClick={onClose}
             className="text-gray-400 hover:text-gray-600 transition-colors"
           >
-            <IoCloseCircle size={24} color='black'/>
+            <IoCloseCircle size={24} color='black' />
           </button>
         </div>
-        
+
         <p className="text-xs text-gray-500 mb-4">{service.category}</p>
-        
+
         {/* Video Section - Local Video Player */}
         {details.videoUrl && (
           <div className="mb-4">
             {!showVideo ? (
-              <div 
+              <div
                 className="relative group cursor-pointer rounded-xl overflow-hidden aspect-video flex items-center justify-center"
                 onClick={() => setShowVideo(true)}
               >
                 {/* Custom Thumbnail Image */}
                 {details.thumbnailUrl ? (
-                  <img 
-                    src={details.thumbnailUrl} 
+                  <img
+                    src={details.thumbnailUrl}
                     alt={`${service.name} thumbnail`}
                     className="w-full h-full object-cover"
                   />
                 ) : (
                   <div className="w-full h-full bg-gradient-to-br from-gray-100 to-gray-200" />
                 )}
-                
+
                 {/* Play Button Overlay */}
                 <div className="absolute inset-0 bg-black/20 group-hover:bg-black/30 transition flex items-center justify-center">
                   <div className="w-16 h-16 bg-white/90 rounded-full flex items-center justify-center group-hover:scale-110 transition shadow-lg">
                     <svg className="w-8 h-8 text-gray-900 ml-1" fill="currentColor" viewBox="0 0 20 20">
-                      <path d="M6.3 2.841A1.5 1.5 0 004 4.11V15.89a1.5 1.5 0 002.3 1.269l9.344-5.89a1.5 1.5 0 000-2.538L6.3 2.84z"/>
+                      <path d="M6.3 2.841A1.5 1.5 0 004 4.11V15.89a1.5 1.5 0 002.3 1.269l9.344-5.89a1.5 1.5 0 000-2.538L6.3 2.84z" />
                     </svg>
                   </div>
                 </div>
@@ -237,9 +266,9 @@ function ServicePopup({ isOpen, onClose, service }) {
             )}
           </div>
         )}
-        
+
         <p className="text-sm text-gray-700 mb-4">{details.description}</p>
-        
+
         <div className="space-y-3 mb-6">
           <div className="flex items-center gap-2">
             <span className="text-gray-600 text-sm">⏱️ Duration:</span>
@@ -250,24 +279,46 @@ function ServicePopup({ isOpen, onClose, service }) {
             <span className="text-sm font-semibold text-gray-900">{details.price}</span>
           </div>
         </div>
-        
-        <div className="mb-6">
-          <p className="text-sm font-semibold text-gray-900 mb-2">What's Included:</p>
-          <ul className="space-y-1">
-            {details.includes.map((item, idx) => (
-              <li key={idx} className="text-xs text-gray-600 flex items-start gap-2">
-                <span className="text-green-500 mt-0.5">✓</span>
-                <span>{item}</span>
-              </li>
-            ))}
-          </ul>
+
+        <div className="mb-6 flex items-center gap-2">
+          <p className="text-sm font-semibold text-gray-900">What's Included:</p>
+          <SmoothTextCycle 
+            items={details.includes}
+            interval={4000}
+            version="slide"
+            className="min-h-[20px]"
+            showCheckmark={true}
+            simple={true}
+          />
         </div>
         
-        <button className="w-full bg-gray-900 text-white py-3 rounded-lg font-semibold hover:bg-gray-800 transition">
-          Book Now
-        </button>
-      </div>
-    </div>
+        <div className="flex justify-center gap-2 text-xs items-center">
+          <button 
+            onClick={handleBookNow}
+            className="w-full bg-gray-900 text-white py-3 rounded-lg font-semibold hover:bg-gray-800 transition"
+          >
+            Book Now
+          </button>
+          <span className="text-gray-600 font-bold">or</span>
+          <button 
+            onClick={() => navigate('/services')}
+            className="w-full bg-gray-900 text-white py-3 rounded-lg font-semibold hover:bg-gray-800 transition"
+          >
+            Book More
+          </button>
+        </div>
+          </div>
+        </div>
+      )}
+
+      {/* Time Slot Selection Modal */}
+      <TimeSlotSelection
+        isOpen={showTimeSlotSelection}
+        onClose={handleCloseTimeSlot}
+        selectedService={service}
+        onFinalise={handleFinaliseBooking}
+      />
+    </>
   );
 }
 
@@ -290,17 +341,19 @@ export default function Services() {
             <p className="font-semibold text-xs text-black mb-2">
               {service.category}
             </p>
-            <div className="flex flex-nowrap gap-2 overflow-x-auto whitespace-nowrap pb-1">
-              {service.items.map((item, idx) => (
-                <span
-                  key={idx}
-                  onClick={() => handleServiceClick(item, service.category)}
-                  className="px-3 py-2 bg-gray-100 border rounded-lg text-xs text-gray-800 whitespace-nowrap hover:bg-gray-200 transition cursor-pointer"
-                >
-                  {item}
-                </span>
-              ))}
-            </div>
+            <AutoScroll speed={10} pauseOnHover={true}>
+              <div className="flex flex-nowrap gap-2 overflow-x-auto whitespace-nowrap pb-1">
+                {service.items.map((item, idx) => (
+                  <span
+                    key={idx}
+                    onClick={() => handleServiceClick(item, service.category)}
+                    className="px-3 py-2 bg-gray-100 border rounded-lg text-xs text-gray-800 whitespace-nowrap hover:bg-gray-200 transition cursor-pointer mx-1"
+                  >
+                    {item}
+                  </span>
+                ))}
+              </div>
+            </AutoScroll>
           </div>
         ))}
       </MainCard>
