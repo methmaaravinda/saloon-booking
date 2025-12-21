@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { IoCloseCircle } from 'react-icons/io5';
 import MainCard from './layout/MainCard';
@@ -325,42 +325,402 @@ function ServicePopup({ isOpen, onClose, service }) {
 export default function Services() {
   const navigate = useNavigate();
   const [selectedService, setSelectedService] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
+  const [showPopup, setShowPopup] = useState(false);
+  
+  // Animation type selector - change this to switch animations
+  // Options: 'fade', 'letters', 'wave', 'dots', 'glow', 'blur', 'typing', 'slide', 'rotate', 'color', 'bounce', 'withDots'
+  const [loaderAnimation, setLoaderAnimation] = useState('fade');
 
   const handleServiceClick = (serviceName, category) => {
     setSelectedService({
       name: serviceName,
       category: category,
     });
+    
+    setIsLoading(true);
+    setShowPopup(false);
+    
+    setTimeout(() => {
+      setIsLoading(false);
+      setShowPopup(true);
+    }, 5000);
+  };
+
+  const handleClosePopup = () => {
+    setSelectedService(null);
+    setIsLoading(false);
+    setShowPopup(false);
+  };
+
+  // Render the appropriate loader based on animation type
+  const renderLoader = () => {
+    const baseStyle = {
+      fontFamily: "'Dancing Script', cursive",
+      textShadow: '0 2px 4px rgba(0,0,0,0.1)'
+    };
+
+    switch(loaderAnimation) {
+      case 'fade':
+        return (
+          <h2 className="skylla-fade text-4xl font-extrabold text-gray-900" style={baseStyle}>
+            Skylla
+          </h2>
+        );
+      
+      case 'letters':
+        return (
+          <h2 className="skylla-letters text-4xl font-bold text-gray-900" style={baseStyle}>
+            <span>S</span><span>k</span><span>y</span><span>l</span><span>l</span><span>a</span>
+          </h2>
+        );
+      
+      case 'wave':
+        return (
+          <h2 className="skylla-wave text-4xl font-bold text-gray-900" style={baseStyle}>
+            <span>S</span><span>k</span><span>y</span><span>l</span><span>l</span><span>a</span>
+          </h2>
+        );
+      
+      case 'dots':
+        return (
+          <h2 className="skylla-dots text-4xl font-bold text-gray-900" style={baseStyle}>
+            Skylla
+          </h2>
+        );
+      
+      case 'glow':
+        return (
+          <h2 className="skylla-glow text-4xl font-bold text-gray-900" style={baseStyle}>
+            Skylla
+          </h2>
+        );
+      
+      case 'blur':
+        return (
+          <h2 className="skylla-blur text-4xl font-bold text-gray-900" style={baseStyle}>
+            Skylla
+          </h2>
+        );
+      
+      case 'typing':
+        return (
+          <h2 className="skylla-typing text-4xl font-bold text-gray-900" style={baseStyle}>
+            Skylla
+          </h2>
+        );
+      
+      case 'slide':
+        return (
+          <h2 className="skylla-slide text-4xl font-bold text-gray-900" style={baseStyle}>
+            Skylla
+          </h2>
+        );
+      
+      case 'rotate':
+        return (
+          <h2 className="skylla-rotate text-4xl font-bold text-gray-900" style={baseStyle}>
+            <span>S</span><span>k</span><span>y</span><span>l</span><span>l</span><span>a</span>
+          </h2>
+        );
+      
+      case 'color':
+        return (
+          <h2 className="skylla-color text-4xl font-bold" style={baseStyle}>
+            Skylla
+          </h2>
+        );
+      
+      case 'bounce':
+        return (
+          <h2 className="skylla-bounce text-4xl font-bold text-gray-900" style={baseStyle}>
+            Skylla
+          </h2>
+        );
+      
+      case 'withDots':
+        return (
+          <div className="flex items-center gap-2">
+            <h2 className="text-4xl font-bold text-gray-900" style={baseStyle}>
+              Skylla
+            </h2>
+            <div className="skylla-with-dots flex gap-1">
+              <span></span>
+              <span></span>
+              <span></span>
+            </div>
+          </div>
+        );
+      
+      default:
+        return (
+          <h2 className="text-4xl font-bold text-gray-900" style={baseStyle}>
+            Skylla
+          </h2>
+        );
+    }
   };
 
   return (
     <>
-      <MainCard title="💇‍♀️ Our Services" navigateTo="/services" scrollable={true}>
-        {servicesData.map((service, index) => (
-          <div key={index} className="flex flex-col">
-            <p className="font-semibold text-xs text-black mb-2">
-              {service.category}
-            </p>
-            <AutoScroll speed={10} pauseOnHover={true}>
-              <div className="flex flex-nowrap gap-2 overflow-x-auto whitespace-nowrap pb-1">
-                {service.items.map((item, idx) => (
-                  <span
-                    key={idx}
-                    onClick={() => handleServiceClick(item, service.category)}
-                    className="px-3 py-2 bg-gray-100 border rounded-lg text-xs text-gray-800 whitespace-nowrap hover:bg-gray-200 transition cursor-pointer mx-1"
-                  >
-                    {item}
-                  </span>
-                ))}
-              </div>
-            </AutoScroll>
+      {/* Google Font Import */}
+      <style>
+        {`
+          @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600;700&display=swap');
+          
+          /* Animation 1: Fade In/Out */
+          .skylla-fade {
+            animation: fadeInOut 2s ease-in-out infinite;
+          }
+          @keyframes fadeInOut {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 1; }
+          }
+
+          /* Animation 2: Letter by Letter */
+          .skylla-letters span {
+            display: inline-block;
+            animation: letterPop 1.4s ease-in-out infinite;
+          }
+          .skylla-letters span:nth-child(1) { animation-delay: 0s; }
+          .skylla-letters span:nth-child(2) { animation-delay: 0.1s; }
+          .skylla-letters span:nth-child(3) { animation-delay: 0.2s; }
+          .skylla-letters span:nth-child(4) { animation-delay: 0.3s; }
+          .skylla-letters span:nth-child(5) { animation-delay: 0.4s; }
+          .skylla-letters span:nth-child(6) { animation-delay: 0.5s; }
+          @keyframes letterPop {
+            0%, 100% { 
+              transform: scale(1);
+              opacity: 0.4;
+            }
+            50% { 
+              transform: scale(1.3);
+              opacity: 1;
+            }
+          }
+
+          /* Animation 3: Wave Effect */
+          .skylla-wave span {
+            display: inline-block;
+            animation: wave 1.5s ease-in-out infinite;
+          }
+          .skylla-wave span:nth-child(1) { animation-delay: 0s; }
+          .skylla-wave span:nth-child(2) { animation-delay: 0.1s; }
+          .skylla-wave span:nth-child(3) { animation-delay: 0.2s; }
+          .skylla-wave span:nth-child(4) { animation-delay: 0.3s; }
+          .skylla-wave span:nth-child(5) { animation-delay: 0.4s; }
+          .skylla-wave span:nth-child(6) { animation-delay: 0.5s; }
+          @keyframes wave {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+          }
+
+          /* Animation 4: Dots Loading */
+          .skylla-dots::after {
+            content: '';
+            animation: dots 1.5s steps(4) infinite;
+          }
+          @keyframes dots {
+            0%, 20% { content: ''; }
+            40% { content: '.'; }
+            60% { content: '..'; }
+            80%, 100% { content: '...'; }
+          }
+
+          /* Animation 5: Glow Pulse */
+          .skylla-glow {
+            animation: glow 2s ease-in-out infinite;
+          }
+          @keyframes glow {
+            0%, 100% { 
+              text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            }
+            50% { 
+              text-shadow: 0 0 20px rgba(45, 55, 72, 0.6),
+                           0 0 30px rgba(45, 55, 72, 0.4);
+            }
+          }
+
+          /* Animation 6: Blur Focus */
+          .skylla-blur {
+            animation: blurFocus 2s ease-in-out infinite;
+          }
+          @keyframes blurFocus {
+            0%, 100% { 
+              filter: blur(3px);
+              opacity: 0.6;
+            }
+            50% { 
+              filter: blur(0px);
+              opacity: 1;
+            }
+          }
+
+          /* Animation 7: Typing Effect */
+          .skylla-typing {
+            overflow: hidden;
+            border-right: 3px solid #2d3748;
+            white-space: nowrap;
+            animation: typing 2s steps(6) infinite, blink 0.75s step-end infinite;
+            width: 6ch;
+            display: inline-block;
+          }
+          @keyframes typing {
+            0%, 90%, 100% { width: 0; }
+            30%, 60% { width: 6ch; }
+          }
+          @keyframes blink {
+            50% { border-color: transparent; }
+          }
+
+          /* Animation 8: Slide In/Out */
+          .skylla-slide {
+            animation: slideInOut 2s ease-in-out infinite;
+          }
+          @keyframes slideInOut {
+            0%, 100% { 
+              transform: translateX(-100%);
+              opacity: 0;
+            }
+            50% { 
+              transform: translateX(0);
+              opacity: 1;
+            }
+          }
+
+          /* Animation 9: Rotate Letters */
+          .skylla-rotate span {
+            display: inline-block;
+            animation: rotateLetters 2s ease-in-out infinite;
+          }
+          .skylla-rotate span:nth-child(1) { animation-delay: 0s; }
+          .skylla-rotate span:nth-child(2) { animation-delay: 0.1s; }
+          .skylla-rotate span:nth-child(3) { animation-delay: 0.2s; }
+          .skylla-rotate span:nth-child(4) { animation-delay: 0.3s; }
+          .skylla-rotate span:nth-child(5) { animation-delay: 0.4s; }
+          .skylla-rotate span:nth-child(6) { animation-delay: 0.5s; }
+          @keyframes rotateLetters {
+            0%, 100% { 
+              transform: rotateY(0deg);
+              opacity: 1;
+            }
+            50% { 
+              transform: rotateY(360deg);
+              opacity: 0.3;
+            }
+          }
+
+          /* Animation 10: Color Shift */
+          .skylla-color {
+            animation: colorShift 3s linear infinite;
+          }
+          @keyframes colorShift {
+            0% { color: #2d3748; }
+            25% { color: #4a5568; }
+            50% { color: #718096; }
+            75% { color: #4a5568; }
+            100% { color: #2d3748; }
+          }
+
+          /* Animation 11: Bounce */
+          .skylla-bounce {
+            animation: bounce 1.5s ease-in-out infinite;
+          }
+          @keyframes bounce {
+            0%, 100% { 
+              transform: translateY(0) scale(1);
+            }
+            50% { 
+              transform: translateY(-30px) scale(1.1);
+            }
+          }
+
+          /* Animation 12: With Dots */
+          .skylla-with-dots span {
+            width: 8px;
+            height: 8px;
+            background: #2d3748;
+            border-radius: 50%;
+            display: inline-block;
+            animation: dotPulse 1.4s ease-in-out infinite;
+          }
+          .skylla-with-dots span:nth-child(1) { animation-delay: 0s; }
+          .skylla-with-dots span:nth-child(2) { animation-delay: 0.2s; }
+          .skylla-with-dots span:nth-child(3) { animation-delay: 0.4s; }
+          @keyframes dotPulse {
+            0%, 100% { 
+              transform: scale(1);
+              opacity: 0.5;
+            }
+            50% { 
+              transform: scale(1.5);
+              opacity: 1;
+            }
+          }
+        `}
+      </style>
+
+      {/* Blur overlay and Skylla loading indicator */}
+      {isLoading && (
+        <div className="fixed inset-0 z-40 flex items-center justify-center bg-black/20 backdrop-blur-sm">
+          <div className="text-center">
+            {renderLoader()}
           </div>
-        ))}
-      </MainCard>
+        </div>
+      )}
+
+      {/* Services component with conditional blur */}
+      <div className={`relative ${isLoading || showPopup ? 'blur-sm' : ''} transition-all duration-300`}>
+        <MainCard title="💇‍♀️ Our Services" navigateTo="/services" scrollable={true}>
+          {servicesData.map((service, index) => (
+            <div key={index} className="flex flex-col">
+              <p className="font-semibold text-xs text-black mb-2">
+                {service.category}
+              </p>
+              <AutoScroll speed={10} pauseOnHover={true}>
+                <div className="flex flex-nowrap gap-2 overflow-x-auto whitespace-nowrap pb-1">
+                  {service.items.map((item, idx) => (
+                    <span
+                      key={idx}
+                      onClick={() => handleServiceClick(item, service.category)}
+                      className="px-3 py-2 bg-gray-100 border rounded-lg text-xs text-gray-800 whitespace-nowrap hover:bg-gray-200 transition cursor-pointer mx-1"
+                    >
+                      {item}
+                    </span>
+                  ))}
+                </div>
+              </AutoScroll>
+            </div>
+          ))}
+        </MainCard>
+
+        {/* Optional: Animation Selector (for testing - remove in production) */}
+        {/* <div className="fixed bottom-4 right-4 bg-white rounded-lg shadow-lg p-4 z-50">
+          <p className="text-xs font-semibold mb-2">Loader Animation:</p>
+          <select 
+            value={loaderAnimation} 
+            onChange={(e) => setLoaderAnimation(e.target.value)}
+            className="text-xs border rounded px-2 py-1"
+          >
+            <option value="fade">Fade</option>
+            <option value="letters">Letters</option>
+            <option value="wave">Wave</option>
+            <option value="dots">Dots</option>
+            <option value="glow">Glow</option>
+            <option value="blur">Blur</option>
+            <option value="typing">Typing</option>
+            <option value="slide">Slide</option>
+            <option value="rotate">Rotate</option>
+            <option value="color">Color</option>
+            <option value="bounce">Bounce</option>
+            <option value="withDots">With Dots</option>
+          </select>
+        </div> */}
+      </div>
 
       <ServicePopup
-        isOpen={selectedService !== null}
-        onClose={() => setSelectedService(null)}
+        isOpen={showPopup}
+        onClose={handleClosePopup}
         service={selectedService || { name: '', category: '' }}
       />
     </>

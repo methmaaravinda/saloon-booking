@@ -3,6 +3,7 @@ import { FiChevronRight, FiCalendar, FiClock, FiDollarSign } from "react-icons/f
 import { MdArrowCircleRight, MdArrowCircleLeft } from "react-icons/md";
 import { useNavigate } from 'react-router-dom';
 import MainCard from './layout/MainCard';
+import { VerticalAutoScroll } from './Verticalautoscroll';
 function BookingCards() {
     const availableSlots = [
         { day: "Saturday", time: "2:15 PM" },
@@ -220,78 +221,11 @@ export function MyBookings() {
     };
   
     return (
-      // <div className="container mx-auto px-4 py-2">
-      //   <div className="bg-white border rounded-xl p-4 shadow-sm relative">
-      //     <button
-      //       onClick={() => navigate('/my-bookings')}
-      //       className="absolute top-4 right-4 text-gray-400 hover:text-black transition-colors"
-      //     >
-      //       <FiChevronRight size={20} />
-      //     </button>
-      //     <p className="text-xs text-gray-500 font-bold mb-3 pr-8">
-      //       📅 My Bookings
-      //     </p>
-  
-      //     <div className="space-y-3 h-[200px] overflow-y-auto">
-      //       {bookings.map((booking) => (
-      //         <div
-      //           key={booking.id}
-      //           className="border border-gray-200 rounded-lg p-3 flex items-start justify-between gap-3"
-      //         >
-      //           {/* Left: main info */}
-      //           <div>
-      //             <p className="text-sm font-semibold text-gray-900">
-      //               {booking.name}
-      //             </p>
-      //             <p className="text-xs text-gray-500 mt-1 flex items-center gap-1">
-      //               <FiCalendar className="text-gray-400" size={10} />
-      //               {booking.date} · {booking.time}
-      //             </p>
-  
-      //             <p className="text-xs text-gray-600 mt-2">
-      //               Services:{" "}
-      //               <span className="font-medium">
-      //                 {booking.services.join(", ")}
-      //               </span>
-      //             </p>
-  
-      //             {booking.status === "pending" && (
-      //               <p className="text-xs text-amber-700 mt-1 flex items-center gap-1">
-      //                 <FiClock className="text-amber-600" size={10} />
-      //                 {getTimeRemainingLabel(booking.date, booking.time)}
-      //               </p>
-      //             )}
-      //           </div>
-  
-      //           {/* Right: status + charges */}
-      //           <div className="text-right space-y-1 min-w-[90px]">
-      //             <span
-      //               className={
-      //                 "inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-semibold border capitalize " +
-      //                 getStatusStyles(booking.status)
-      //               }
-      //             >
-      //               {booking.status}
-      //             </span>
-  
-      //             <p className="text-sm font-semibold text-gray-900 flex items-center justify-end gap-1">
-      //               <FiDollarSign className="text-gray-600" size={12} />
-      //               {booking.amount}
-      //             </p>
-  
-      //             {booking.status === "pending" && (
-      //               <p className="text-[10px] text-gray-500">
-      //                 Estimated charges
-      //               </p>
-      //             )}
-      //           </div>
-      //         </div>
-      //       ))}
-      //     </div>
-      //   </div>
-      // </div>
-      <MainCard title="📅 My Bookings" navigateTo="/my-bookings" scrollable={true}>
-        {bookings.map((booking) => (
+      <MainCard title="📅 My Bookings" navigateTo="/my-bookings" scrollable={false}>
+        <div className="h-[200px]">
+          <VerticalAutoScroll speed={10} pauseOnHover={true}>
+            <div className="space-y-3">
+            {bookings.map((booking) => (
               <div
                 key={booking.id}
                 className="border border-gray-200 rounded-lg p-3 flex items-start justify-between gap-3"
@@ -345,6 +279,9 @@ export function MyBookings() {
                 </div>
               </div>
             ))}
+            </div>
+          </VerticalAutoScroll>
+        </div>
       </MainCard>
     );
   }
