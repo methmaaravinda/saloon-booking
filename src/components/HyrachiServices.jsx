@@ -3,7 +3,7 @@ import ServicePopup from './ServicePopup';
 import { servicesDatabase } from './servicesData';
 
 // Reusable AutoScroll component - supports both auto-scroll AND manual scroll
-function AutoScroll({ children, speed = 30, direction = 'left', pauseOnHover = true }) {
+export function AutoScroll({ children, speed = 30, direction = 'left', pauseOnHover = true }) {
   const scrollRef = useRef(null);
   const animationRef = useRef(null);
   const isPausedRef = useRef(false);
