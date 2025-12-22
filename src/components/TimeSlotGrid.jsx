@@ -58,11 +58,12 @@ const TimeSlotGrid = ({ selectedSlot, onSlotSelect, bookedSlots: externalBookedS
     }
     
     // Format the selected slot for parent component
-    // Convert "09 AM" format to "9:00 AM" and minute like "15 min"
+    // Convert "09 AM" format and minute to "9:40 AM" format
     const hourNum = parseInt(hour.split(' ')[0]);
     const period = hour.split(' ')[1];
     const formattedHour = hourNum === 9 ? '9' : hourNum.toString();
-    const formattedSlot = `${formattedHour}:00 ${period} ${minute.toString().padStart(2, '0')} min`;
+    const formattedMinute = minute.toString().padStart(2, '0');
+    const formattedSlot = `${formattedHour}:${formattedMinute} ${period}`;
     
     // Get the clicked cell's position for tooltip
     const cellElement = event.currentTarget;
@@ -136,11 +137,12 @@ const TimeSlotGrid = ({ selectedSlot, onSlotSelect, bookedSlots: externalBookedS
   const isSelected = (hour, minute) => {
     if (!selectedSlot) return false;
     
-    // Parse the selectedSlot format: "9:00 AM 15 min"
+    // Parse the selectedSlot format: "9:40 AM"
     const hourNum = parseInt(hour.split(' ')[0]);
     const period = hour.split(' ')[1];
     const formattedHour = hourNum === 9 ? '9' : hourNum.toString();
-    const expectedFormat = `${formattedHour}:00 ${period} ${minute.toString().padStart(2, '0')} min`;
+    const formattedMinute = minute.toString().padStart(2, '0');
+    const expectedFormat = `${formattedHour}:${formattedMinute} ${period}`;
     
     return selectedSlot === expectedFormat;
   };
@@ -196,7 +198,7 @@ const TimeSlotGrid = ({ selectedSlot, onSlotSelect, bookedSlots: externalBookedS
                           ${slotBooked
                             ? 'bg-purple-100 border border-purple-300 cursor-not-allowed'
                             : slotSelected
-                            ? 'bg-green-500 border-2 border-green-600 cursor-pointer'
+                            ? 'bg-blue-400 border border-blue-500 cursor-pointer'
                             : 'bg-white border border-gray-200 hover:bg-blue-50 hover:shadow-md hover:border-blue-400 hover:scale-105 cursor-pointer'
                           }
                         `}
