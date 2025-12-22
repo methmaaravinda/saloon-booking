@@ -7,6 +7,7 @@ import TimeSlotSelector from './Timeslotselector';
 import { AutoScroll } from './HyrachiServices';
 import { VerticalAutoScroll } from './Verticalautoscroll';
 import TimeSlotGrid from './TimeSlotGrid';
+
 export default function TimeSlotSelection({ isOpen, onClose, selectedService, onFinalise }) {
   const navigate = useNavigate();
   const [selectedDate, setSelectedDate] = useState(new Date());
