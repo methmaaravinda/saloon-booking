@@ -3,7 +3,10 @@ import { useNavigate } from 'react-router-dom';
 import { FiClock, FiCalendar, FiChevronLeft, FiChevronRight } from 'react-icons/fi';
 import { IoCloseCircle } from 'react-icons/io5';
 import { BsCheckCircleFill } from 'react-icons/bs';
-
+import TimeSlotSelector from './Timeslotselector';
+import { AutoScroll } from './HyrachiServices';
+import { VerticalAutoScroll } from './Verticalautoscroll';
+import TimeSlotGrid from './TimeSlotGrid';
 export default function TimeSlotSelection({ isOpen, onClose, selectedService, onFinalise }) {
   const navigate = useNavigate();
   const [selectedDate, setSelectedDate] = useState(new Date());
@@ -64,10 +67,51 @@ export default function TimeSlotSelection({ isOpen, onClose, selectedService, on
     };
   }, [showCalendar]);
 
-  const handleSlotSelect = (slot) => {
-    setSelectedSlot(slot);
-    const updatedSlots = [slot, ...availableSlots.filter(s => s !== slot)];
-    setAvailableSlots(updatedSlots);
+  const handleSlotSelect = (hourSlot, minute) => {
+    const fullSlot = `${hourSlot} ${minute} min`;
+    setSelectedSlot(fullSlot);
+  };
+
+  // Check if a specific time slot is selected
+  const isSlotSelected = (hourSlot, minute) => {
+    if (!selectedSlot) return false;
+    return selectedSlot === `${hourSlot} ${minute} min`;
+  };
+
+  // Get available minutes for a specific hour (only bookable slots)
+  // In real app, this would fetch from backend based on selectedDate and hourSlot
+  const getAvailableMinutes = (hourSlot) => {
+    // Sample logic: Generate random available minutes for demonstration
+    // Replace with actual API call to get booked slots
+    const allMinutes = ['10', '15', '20', '25', '30', '35', '40', '45', '50', '55'];
+    
+    // Sample: Some hours have more slots, some have fewer
+    // This simulates real-world scenario where some times are more popular
+    const hourMatch = hourSlot.match(/(\d+):(\d+)\s*(AM|PM)/);
+    if (!hourMatch) return [];
+    
+    const hour = parseInt(hourMatch[1]);
+    const period = hourMatch[3];
+    
+    // Morning hours (9-11 AM) have more availability
+    if (period === 'AM' && hour >= 9 && hour <= 11) {
+      return allMinutes; // All minutes available
+    }
+    // Afternoon hours (12-2 PM) have moderate availability
+    if ((period === 'AM' && hour === 12) || (period === 'PM' && hour <= 2)) {
+      return allMinutes.filter((_, idx) => idx % 2 === 0); // Every other minute
+    }
+    // Evening hours (3-5 PM) have limited availability
+    if (period === 'PM' && hour >= 3 && hour <= 5) {
+      return allMinutes.filter((_, idx) => idx % 3 === 0); // Every third minute
+    }
+    // Late afternoon (6 PM) has very limited availability
+    if (period === 'PM' && hour === 6) {
+      return ['15', '30', '45']; // Only a few slots
+    }
+    
+    // Default: return some slots
+    return allMinutes.filter((_, idx) => idx % 2 === 0);
   };
 
   const handleFinalise = () => {
@@ -245,7 +289,7 @@ export default function TimeSlotSelection({ isOpen, onClose, selectedService, on
         <div className="p-5 space-y-4 max-h-[calc(90vh-180px)] overflow-y-auto custom-scrollbar">
           
           {/* Custom Date Picker */}
-          <div className="border-2 border-gray-200 rounded-2xl p-4 relative" ref={calendarRef}>
+          <div className="relative" ref={calendarRef}>
             <div className="flex items-center gap-2 mb-2">
               <FiCalendar className="text-gray-700" size={16} />
               <label className="text-sm font-semibold text-gray-800">
@@ -285,11 +329,11 @@ export default function TimeSlotSelection({ isOpen, onClose, selectedService, on
           </div>
 
           {/* Available Slots */}
-          <div>
+          <div className="p-1">
             <div className="flex items-center gap-2 mb-3">
               <FiClock className="text-gray-700" size={16} />
               <label className="text-sm font-semibold text-gray-800">
-                Available Times
+                Select Available Time
               </label>
               {selectedSlot && (
                 <span className="ml-auto text-xs font-medium text-black flex items-center gap-1">
@@ -298,33 +342,65 @@ export default function TimeSlotSelection({ isOpen, onClose, selectedService, on
                 </span>
               )}
             </div>
-            
-            <div className="max-h-[240px] overflow-y-auto custom-scrollbar">
-              <div className="grid grid-cols-3 gap-2 pr-1">
-                {availableSlots.map((slot, index) => {
-                  const isSelected = selectedSlot === slot;
-                  return (
-                    <button
-                      key={index}
-                      onClick={() => handleSlotSelect(slot)}
-                      className={`
-                        relative
-                        px-2 py-2.5
-                        rounded-xl
-                        text-xs font-semibold
-                        transition-all duration-200
-                        ${isSelected
-                          ? 'bg-black text-white shadow-lg'
-                          : 'bg-white text-gray-700 border-2 border-gray-200 hover:border-gray-400 hover:bg-gray-50'
-                        }
-                      `}
-                    >
-                      <span className="whitespace-nowrap">{slot}</span>
-                    </button>
-                  );
-                })}
-              </div>
-            </div>
+            {/* <div className="h-36 px-4">
+              <VerticalAutoScroll speed={15} pauseOnHover={true}>
+                <div className="space-y-2 shadow-md">
+                  {availableSlots.map((hourSlot, index) => {
+                    const availableMinutes = getAvailableMinutes(hourSlot);
+                    
+                    // Skip hours with no available slots
+                    if (availableMinutes.length === 0) return null;
+                    
+                    // Parse hour and period from hourSlot (e.g., "9:00 AM")
+                    const hourMatch = hourSlot.match(/(\d+):(\d+)\s*(AM|PM)/);
+                    if (!hourMatch) return null;
+                    
+                    const hour = hourMatch[1];
+                    const period = hourMatch[3];
+                    
+                    return (
+                      <div key={index} className="flex items-center gap-2">
+                        <p className="text-sm text-gray-600 font-medium whitespace-nowrap min-w-[20px]">
+                          {hour} :
+                        </p>
+                        {availableMinutes.length > 0 ? (
+                          <AutoScroll speed={10} pauseOnHover={true}>
+                            <div className="flex items-center gap-2">
+                              {availableMinutes.map((minute, idx) => {
+                                const isSelected = isSlotSelected(hourSlot, minute);
+                                
+                                return (
+                                  <button
+                                    key={idx}
+                                    onClick={() => handleSlotSelect(hourSlot, minute)}
+                                    className={`text-sm font-medium border-2 rounded-md p-1 transition-all flex-shrink-0 ${
+                                      isSelected
+                                        ? 'bg-black text-white border-black hover:bg-gray-800'
+                                        : 'text-gray-400 bg-green-50 border-green-300 hover:bg-green-100 hover:border-green-400 hover:text-black'
+                                    }`}
+                                  >
+                                    {minute}
+                                  </button>
+                                );
+                              })}
+                            </div>
+                          </AutoScroll>
+                        ) : (
+                          <p className="text-xs text-gray-400">No slots available</p>
+                        )}
+                        <p className="text-sm text-gray-600 font-medium whitespace-nowrap">
+                          {period}
+                        </p>
+                      </div>
+                    );
+                  })}
+                </div>
+              </VerticalAutoScroll>
+            </div> */}
+            <TimeSlotGrid 
+              selectedSlot={selectedSlot}
+              onSlotSelect={setSelectedSlot}
+            />
           </div>
 
           {/* Selected Summary */}

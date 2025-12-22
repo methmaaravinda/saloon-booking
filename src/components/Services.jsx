@@ -344,7 +344,7 @@ export default function Services() {
     setTimeout(() => {
       setIsLoading(false);
       setShowPopup(true);
-    }, 5000);
+    }, 1000);
   };
 
   const handleClosePopup = () => {
