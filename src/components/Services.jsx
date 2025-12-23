@@ -7,6 +7,7 @@ import TimeSlotSelection from './TimeSlotSelection';
 import { AutoScroll } from './HyrachiServices';
 import video_url from '../assets/videoplayback.mp4'
 import facial_image from '../assets/facial-image.webp'
+import { AutoscrollHorizontal } from './Animations/AutoscrollHorizontal';
 export const servicesData = [
   {
     category: "Hair Services 💇‍♀️💇‍♂️",
@@ -677,19 +678,15 @@ export default function Services() {
               <p className="font-semibold text-xs text-black mb-2">
                 {service.category}
               </p>
-              <AutoScroll speed={10} pauseOnHover={true}>
-                <div className="flex flex-nowrap gap-2 overflow-x-auto whitespace-nowrap pb-1">
-                  {service.items.map((item, idx) => (
-                    <span
-                      key={idx}
-                      onClick={() => handleServiceClick(item, service.category)}
-                      className="px-3 py-2 bg-gray-100 border rounded-lg text-xs text-gray-800 whitespace-nowrap hover:bg-gray-200 transition cursor-pointer mx-1"
-                    >
-                      {item}
-                    </span>
-                  ))}
-                </div>
-              </AutoScroll>
+              <AutoscrollHorizontal 
+                speed={0.07} 
+                className="flex flex-nowrap gap-2 overflow-x-auto whitespace-nowrap pb-1"
+                isAutoScrollProp={true}
+              >
+                {service.items.map((item, idx) => (
+                  <span key={idx} onClick={() => handleServiceClick(item, service.category)} className="px-3 py-2 bg-gray-100 border rounded-lg text-xs text-gray-800 whitespace-nowrap hover:bg-gray-200 transition cursor-pointer mx-1">{item}</span>
+                ))}
+              </AutoscrollHorizontal>
             </div>
           ))}
         </MainCard>
