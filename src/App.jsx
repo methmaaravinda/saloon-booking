@@ -9,6 +9,7 @@ import LocationHours from './pages/LocationHours'
 import { HeaderWithAvatar } from './components/layout/Header'
 import SearchableFooter from './components/layout/Footer'
 import SearchPage from './components/SearchPage'
+import VideoPopup from './components/VideoPopup'
 
 function App() {
   const [searchActive, setSearchActive] = useState(false)
@@ -50,6 +51,8 @@ function App() {
           <>
             <HeaderWithAvatar />
             <main className="flex-1 overflow-hidden overflow-y-auto">
+              {/* Video Popup - Shows on every page visit within the app */}
+              <VideoPopup />
               <Routes>
                 <Route path="/" element={<Home />} />
                 <Route path="/services" element={<Services />} />
