@@ -1,9 +1,10 @@
 import { useState, useRef, useEffect } from 'react';
-import { IoCloseCircle } from 'react-icons/io5';
+import { IoCloseCircle, IoVolumeHigh, IoVolumeMute } from 'react-icons/io5';
 import mainHairVideo from '../assets/main_hair_video.mp4';
 
 const VideoPopup = () => {
   const [isVisible, setIsVisible] = useState(true);
+  const [isMuted, setIsMuted] = useState(true);
   const videoRef = useRef(null);
   const videoContainerRef = useRef(null);
   const descriptionRef = useRef(null);
@@ -12,19 +13,27 @@ const VideoPopup = () => {
     const video = videoRef.current;
     if (!video) return;
 
-    // Try to play with sound (autoplay)
+    // Start video muted for autoplay
+    video.muted = true;
+    setIsMuted(true);
+
+    // Try to play muted (autoplay)
     const playPromise = video.play();
 
     if (playPromise !== undefined) {
-      playPromise.catch(() => {
-        // If autoplay with sound fails, try muted autoplay
-        video.muted = true;
-        video.play().catch((error) => {
-          console.log('Autoplay prevented:', error);
-        });
+      playPromise.catch((error) => {
+        console.log('Autoplay prevented:', error);
       });
     }
   }, []);
+
+  const handleToggleMute = () => {
+    const video = videoRef.current;
+    if (video) {
+      video.muted = !video.muted;
+      setIsMuted(video.muted);
+    }
+  };
 
   // Match description height to video height
   useEffect(() => {
@@ -146,17 +155,31 @@ const videoDescription = (
         </button>
 
         {/* Video Section - Left Side */}
-        <div ref={videoContainerRef} className="flex-shrink-0 w-1/2">
+        <div ref={videoContainerRef} className="flex-shrink-0 w-1/2 relative">
           <video
             ref={videoRef}
             src={mainHairVideo}
             autoPlay
             playsInline
+            muted
             onEnded={handleVideoEnd}
             className="w-full h-auto rounded-lg object-contain"
           >
             Your browser does not support the video tag.
           </video>
+          
+          {/* Mute/Unmute Button - Bottom Left of Video */}
+          <button
+            onClick={handleToggleMute}
+            className="absolute bottom-2 left-2 z-20 bg-black/50 hover:bg-black/70 rounded-full p-2 transition-colors backdrop-blur-sm"
+            aria-label={isMuted ? "Unmute video" : "Mute video"}
+          >
+            {isMuted ? (
+              <IoVolumeMute size={15} color="white" />
+            ) : (
+              <IoVolumeHigh size={15} color="white" />
+            )}
+          </button>
         </div>
 
         {/* Description Section - Right Side with Scrollable Content */}
