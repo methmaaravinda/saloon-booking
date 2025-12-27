@@ -1,5 +1,5 @@
 import MainCard from './layout/MainCard'
-import { AutoScroll } from './HyrachiServices'
+import { AutoscrollHorizontal } from './Animations/AutoscrollHorizontal'
 
 const discountsData = [
     {
@@ -90,47 +90,49 @@ const discountColorSchemes = {
 export default function DiscountAndPromotions() {
     return (
         <MainCard title="🎉 Discounts & Offers" navigateTo="/services" scrollable={false}>
-            <AutoScroll speed={12} pauseOnHover={true}>
-                <div className="flex flex-nowrap gap-3 pb-2">
-                    {discountsData.map((discount, index) => {
-                        // Get color scheme based on discount category, fallback to default
-                        const colors = discountColorSchemes[discount.category] || discountColorSchemes.default;
-                        
-                        return (
-                            <div
-                                key={index}
-                                className={`
+            <AutoscrollHorizontal
+                speed={0.07}
+                className="flex flex-nowrap gap-2 overflow-x-auto whitespace-nowrap pb-1"
+                isAutoScrollProp={true}
+            >
+                {discountsData.map((discount, index) => {
+                    // Get color scheme based on discount category, fallback to default
+                    const colors = discountColorSchemes[discount.category] || discountColorSchemes.default;
+
+                    return (
+                        <div
+                            key={index}
+                            className={`
                                     flex flex-col gap-2
                                     p-4 min-w-[180px] flex-shrink-0
                                     rounded-xl border
                                     ${colors.gradient}
                                 `}
-                            >
-                                <div className="flex items-center justify-between">
-                                    <span className={`text-xs font-semibold px-2 py-0.5 rounded ${colors.badge}`}>
-                                        {discount.badge}
-                                    </span>
-                                    <span className={`text-2xl font-bold ${colors.discount}`}>
-                                        {discount.discount}
-                                    </span>
-                                </div>
-
-                                <h3 className="text-sm font-semibold text-gray-800 mt-1">
-                                    {discount.title}
-                                </h3>
-
-                                <p className="text-xs text-gray-600 leading-relaxed">
-                                    {discount.description}
-                                </p>
-
-                                <span className="mt-auto pt-2 inline-block text-xs px-2 py-1.5 rounded-md bg-white/70 text-gray-700 font-mono border border-gray-200">
-                                    {discount.code}
+                        >
+                            <div className="flex items-center justify-between">
+                                <span className={`text-xs font-semibold px-2 py-0.5 rounded ${colors.badge}`}>
+                                    {discount.badge}
+                                </span>
+                                <span className={`text-2xl font-bold ${colors.discount}`}>
+                                    {discount.discount}
                                 </span>
                             </div>
-                        );
-                    })}
-                </div>
-            </AutoScroll>
+
+                            <h3 className="text-sm font-semibold text-gray-800 mt-1">
+                                {discount.title}
+                            </h3>
+
+                            <p className="text-xs text-gray-600 leading-relaxed">
+                                {discount.description}
+                            </p>
+
+                            <span className="mt-auto pt-2 inline-block text-xs px-2 py-1.5 rounded-md bg-white/70 text-gray-700 font-mono border border-gray-200">
+                                {discount.code}
+                            </span>
+                        </div>
+                    );
+                })}
+            </AutoscrollHorizontal>
         </MainCard>
     )
 }
