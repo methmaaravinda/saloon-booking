@@ -87,6 +87,145 @@ export const servicesData = [
   },
 ];
 
+// Service color scheme configuration
+const serviceColorSchemes = {
+  "Hair Services 💇‍♀️💇‍♂️": {
+    gradient: "bg-gradient-to-br from-purple-50 to-pink-50 border-purple-300",
+    badge: "bg-purple-100 text-purple-700",
+  },
+  "Skin / Face Services ✨": {
+    gradient: "bg-gradient-to-br from-amber-50 to-orange-50 border-amber-300",
+    badge: "bg-amber-100 text-amber-700",
+  },
+  "Nail Services 💅": {
+    gradient: "bg-gradient-to-br from-red-50 to-pink-50 border-red-300",
+    badge: "bg-red-100 text-red-700",
+  },
+  "Makeup Services 💄": {
+    gradient: "bg-gradient-to-br from-rose-50 to-pink-50 border-rose-300",
+    badge: "bg-rose-100 text-rose-700",
+  },
+  "Body Care Services 🧖‍♀️": {
+    gradient: "bg-gradient-to-br from-blue-50 to-cyan-50 border-blue-300",
+    badge: "bg-blue-100 text-blue-700",
+  },
+  "Men's Grooming Services 🧔": {
+    gradient: "bg-gradient-to-br from-slate-50 to-gray-50 border-slate-300",
+    badge: "bg-slate-100 text-slate-700",
+  },
+  "Bridal & Groom Packages 👰🤵": {
+    gradient: "bg-gradient-to-br from-indigo-50 to-purple-50 border-indigo-300",
+    badge: "bg-indigo-100 text-indigo-700",
+  },
+  "Kids Services 👶": {
+    gradient: "bg-gradient-to-br from-green-50 to-emerald-50 border-green-300",
+    badge: "bg-green-100 text-green-700",
+  },
+  default: {
+    gradient: "bg-gradient-to-br from-gray-50 to-slate-50 border-gray-300",
+    badge: "bg-gray-100 text-gray-700",
+  }
+};
+
+// Service emoji mapping
+const serviceEmojis = {
+  "Haircut (men / women / kids)": "✂️",
+  "Hair styling (blow dry, curls, straightening)": "💇‍♀️",
+  "Hair wash & conditioning": "🧴",
+  "Hair coloring (full color, root touch-up)": "🎨",
+  "Highlights / balayage / ombré": "🌟",
+  "Hair spa & treatments": "💆‍♀️",
+  "Hair smoothening / rebonding / keratin": "✨",
+  "Beard trim & shave (for men)": "🧔",
+  "Facials (basic, gold, herbal, anti-aging)": "✨",
+  "Clean-up": "🧼",
+  "Bleaching": "💆‍♀️",
+  "Threading": "🧵",
+  "Waxing (face / body)": "🪶",
+  "Face massage": "💆",
+  "De-tan treatment": "🌞",
+  "Acne or pigmentation treatments": "💊",
+  "Manicure": "💅",
+  "Pedicure": "🦶",
+  "Gel polish": "✨",
+  "Nail extensions": "📏",
+  "Nail art": "🎨",
+  "Nail repair / removal": "🔧",
+  "Party makeup": "🎉",
+  "Bridal makeup": "👰",
+  "Engagement makeup": "💍",
+  "Photoshoot makeup": "📸",
+  "HD / Airbrush makeup": "🎭",
+  "Hairstyle with makeup": "💄",
+  "Body massage": "💆‍♂️",
+  "Body scrub": "🧽",
+  "Body polishing": "✨",
+  "Body wrap": "🛁",
+  "Back polish": "💫",
+  "Haircut & styling": "✂️",
+  "Beard grooming": "🧔",
+  "Shave": "🪒",
+  "Facial for men": "💆‍♂️",
+  "Head massage": "💆",
+  "Bridal full package": "👰",
+  "Pre-bridal packages": "💐",
+  "Groom makeup & grooming": "🤵",
+  "Engagement packages": "💍",
+  "Kids haircut": "👶",
+  "Kids grooming packages": "🎈",
+};
+
+// Helper function to get service description
+const getServiceDescription = (serviceName) => {
+  const descriptions = {
+    "Haircut (men / women / kids)": "Professional precision cut",
+    "Hair styling (blow dry, curls, straightening)": "Styled to perfection",
+    "Hair wash & conditioning": "Deep cleanse & nourish",
+    "Hair coloring (full color, root touch-up)": "Vibrant color transformation",
+    "Highlights / balayage / ombré": "Dimensional color artistry",
+    "Hair spa & treatments": "Rejuvenating hair therapy",
+    "Hair smoothening / rebonding / keratin": "Silky smooth results",
+    "Beard trim & shave (for men)": "Sharp, clean grooming",
+    "Facials (basic, gold, herbal, anti-aging)": "Glowing, refreshed skin",
+    "Clean-up": "Deep pore cleansing",
+    "Bleaching": "Skin brightening",
+    "Threading": "Precise hair removal",
+    "Waxing (face / body)": "Smooth, hair-free skin",
+    "Face massage": "Relaxing facial therapy",
+    "De-tan treatment": "Sun damage recovery",
+    "Acne or pigmentation treatments": "Targeted skin solutions",
+    "Manicure": "Beautiful nail care",
+    "Pedicure": "Perfect feet treatment",
+    "Gel polish": "Long-lasting shine",
+    "Nail extensions": "Lengthen & strengthen",
+    "Nail art": "Creative nail designs",
+    "Nail repair / removal": "Expert nail restoration",
+    "Party makeup": "Celebration-ready glam",
+    "Bridal makeup": "Your perfect wedding look",
+    "Engagement makeup": "Special moment beauty",
+    "Photoshoot makeup": "Camera-ready perfection",
+    "HD / Airbrush makeup": "Flawless finish",
+    "Hairstyle with makeup": "Complete glam package",
+    "Body massage": "Full body relaxation",
+    "Body scrub": "Exfoliating treatment",
+    "Body polishing": "Smooth, glowing skin",
+    "Body wrap": "Detoxifying therapy",
+    "Back polish": "Targeted back care",
+    "Haircut & styling": "Sharp, modern look",
+    "Beard grooming": "Perfectly styled beard",
+    "Shave": "Clean, smooth shave",
+    "Facial for men": "Men's skincare routine",
+    "Head massage": "Stress-relieving massage",
+    "Bridal full package": "Complete bridal beauty",
+    "Pre-bridal packages": "Pre-wedding prep",
+    "Groom makeup & grooming": "Groom perfection",
+    "Engagement packages": "Engagement glamour",
+    "Kids haircut": "Kids-friendly cuts",
+    "Kids grooming packages": "Little ones pampering",
+  };
+  return descriptions[serviceName] || "Professional service";
+};
+
 // Service details data (you can expand this with real data)
 const serviceDetails = {
   "Haircut (men / women / kids)": {
@@ -672,23 +811,63 @@ export default function Services() {
 
       {/* Services component with conditional blur */}
       <div className={`relative ${isLoading || showPopup ? 'blur-sm' : ''} transition-all duration-300`}>
-        <MainCard title="💇‍♀️ Our Services" navigateTo="/services" scrollable={true}>
-          {servicesData.map((service, index) => (
-            <div key={index} className="flex flex-col">
-              <p className="font-semibold text-xs text-black mb-2">
-                {service.category}
-              </p>
-              <AutoscrollHorizontal 
-                speed={0.07} 
-                className="flex flex-nowrap gap-2 overflow-x-auto whitespace-nowrap pb-1"
-                isAutoScrollProp={true}
-              >
-                {service.items.map((item, idx) => (
-                  <span key={idx} onClick={() => handleServiceClick(item, service.category)} className="px-3 py-2 bg-gray-100 border rounded-lg text-xs text-gray-800 whitespace-nowrap hover:bg-gray-200 transition cursor-pointer mx-1">{item}</span>
-                ))}
-              </AutoscrollHorizontal>
-            </div>
-          ))}
+        <MainCard title="💇‍♀️ Our Services" navigateTo="/services" scrollable={true} height="300px">
+          {servicesData.map((service, index) => {
+            const colors = serviceColorSchemes[service.category] || serviceColorSchemes.default;
+            
+            return (
+              <div key={index} className="flex flex-col mb-4">
+                <p className="font-semibold text-sm text-black mb-3 px-1">
+                  {service.category}
+                </p>
+                <AutoscrollHorizontal 
+                  speed={0.07} 
+                  className="flex flex-nowrap gap-2 overflow-x-auto whitespace-nowrap pb-1"
+                  isAutoScrollProp={true}
+                >
+                  {service.items.map((item, idx) => {
+                    const emoji = serviceEmojis[item] || "✨";
+                    const description = getServiceDescription(item);
+                    
+                    return (
+                      <div
+                        key={idx}
+                        onClick={() => handleServiceClick(item, service.category)}
+                        className={`
+                          flex flex-col gap-2
+                          p-4 min-w-[180px] flex-shrink-0
+                          rounded-xl border cursor-pointer
+                          hover:shadow-md transition-all duration-200
+                          ${colors.gradient}
+                        `}
+                      >
+                        <div className="flex items-center justify-between">
+                          <span className={`text-xs font-semibold px-2 py-0.5 rounded ${colors.badge}`}>
+                            {service.category.split(' ')[0]}
+                          </span>
+                          <span className="text-2xl">
+                            {emoji}
+                          </span>
+                        </div>
+
+                        <h3 className="text-sm font-semibold text-gray-800 mt-1 line-clamp-2">
+                          {item}
+                        </h3>
+
+                        <p className="text-xs text-gray-600 leading-relaxed">
+                          {description}
+                        </p>
+
+                        <span className="mt-auto pt-2 inline-block text-xs px-2 py-1.5 rounded-md bg-white/70 text-gray-700 font-medium border border-gray-200/50">
+                          Book Now →
+                        </span>
+                      </div>
+                    );
+                  })}
+                </AutoscrollHorizontal>
+              </div>
+            );
+          })}
         </MainCard>
 
         {/* Optional: Animation Selector (for testing - remove in production) */}

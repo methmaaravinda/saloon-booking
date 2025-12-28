@@ -1,24 +1,24 @@
 import { useNavigate } from 'react-router-dom';
 import { FiChevronRight } from 'react-icons/fi';
-
-export default function MainCard({ 
-    children, 
-    navigateTo, 
+export default function MainCard({
+    children,
+    navigateTo,
     scrollable = false,
-    title, 
+    title,
     containerPadding = "p-4",
-    headerTextSize = "text-sm"
+    headerTextSize = "text-sm",
+    height = "200px",
 }) {
     const navigate = useNavigate();
-    
-    const contentClasses = scrollable 
-        ? "space-y-1 h-[200px] overflow-y-auto p-4" 
+
+    const contentClasses = scrollable
+        ? `space-y-1 h-[${height}] overflow-y-auto p-4`
         : "p-4";
-    
-    const titleClasses = scrollable 
-        ? `${headerTextSize} text-gray-500 font-bold` 
+
+    const titleClasses = scrollable
+        ? `${headerTextSize} text-gray-500 font-bold`
         : `text-xs text-gray-500 font-bold mb-2 pr-8`;
-    
+
     return (
         <div className={`container mx-auto ${containerPadding}`}>
             <div className="bg-white static-border static-border-blue rounded-xl relative shadow-md">
